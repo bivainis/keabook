@@ -3,10 +3,12 @@
  */
 var Validator = (function(){
 
-    var validate = function(){
+    var check = function(fields){
 
+        // return true for development
+        return true;
     };
     return {
-        validate : validate
+        check : check
     };
 }());

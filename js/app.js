@@ -39,13 +39,33 @@ $(function() {
     $('form').on('submit', function(e) {
         e.preventDefault();
 
-        //
+        var currentForm = $(this).attr('id');
 
+
+        if (currentForm == 'signupForm') {
+
+            var email = $(this).find('#signupEmail').val();
+            var pass = $(this).find('#signupPassword').val();
+            var passRepeat = $(this).find('#signupPasswordRepeat').val();
+            var fields = {
+                email : email,
+                password : pass,
+                passwordRepeat : passRepeat
+            };
+
+            // if validator returns true, create a new user
+            if(Validator.check(fields)){
+
+                User.make(fields);
+            }
+        }
     });
     $('[data-view]').on('click', function(e){
 
         e.preventDefault();
 
-        Navigator.loadView($(this).attr('data-view'));
+        var view = $(this).attr('data-view');
+
+        Navigator.loadView(view);
     });
 });

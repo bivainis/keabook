@@ -3,7 +3,7 @@
  */
 var Auth = (function(){
 
-    var check = function () {
+    var check = function() {
 
     };
     var logout = function(){
@@ -15,6 +15,7 @@ var Auth = (function(){
     return {
         login : login,
         logout : logout,
-        check : check
+        check : check,
+
     };
 }());
