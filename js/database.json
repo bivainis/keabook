@@ -7,6 +7,8 @@
             "email" : "gediminas@bivainis.com",
             "password" : "{ cryptojs hash }",
             "loggedIn" : false,
+            "loginAt" : "{ unix timestamp }",
+            "rememberMe" : 0,
             "type" : 1,
             "gravatar" : "{ hash }",
             "createdAt" : "{ unix timestamp }",

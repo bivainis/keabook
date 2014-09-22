@@ -1,10 +1,21 @@
 // todo:
 // create and init auth module
-// validate inputs
+// validator module
 // if not logged in then show home page
+// use bootstrap modals for login/signup
 // maybe realtime chat?
 // ajax content requests
 // search
+
+// pseudo
+// Validator checks inputs and returns errors if any
+//
+// Auth logs the user in : changes loggedIn to true, and logs out by setting it to false.
+// Auth checks when navigating to see if user is logged in, otherwise show home screen
+// Auth hashes and decrypts passwords
+// Auth stores login time and logout after inactivity of 1 hour, unless 'rememberMe' is clicked when logging in
+//
+// Navigator loads partials to view, if user is logged in
 
 $(function() {
     var wHeight = window.innerHeight,
@@ -20,8 +31,12 @@ $(function() {
         popup.hide().children().hide();
         $('#' + target).show();
         popup.show();
+    });
 
+    $('form').on('submit', function(e) {
+        e.preventDefault();
+
+        //
 
     });
 });
-
