@@ -1,0 +1,30 @@
+a {
+  color: $blue;
+  &:hover,
+  &:focus {
+    color: $red;
+  }
+}
+.btn-default:hover,
+.btn-default:focus,
+.btn-default:active,
+.btn-default.active,
+.open>.dropdown-toggle.btn-default {
+  background-color: transparent;
+  border-color: $red;
+  color: $red;
+}
+.nav-custom {
+  margin-bottom: 0;
+  background-color: #fff;
+  border-bottom: 1px solid $lightBlue;
+}
+.navbar-toggle {
+  padding: 6px 10px;
+}
+.nav>li>a:hover, .nav>li>a:focus {
+  background-color: transparent;
+}
+.navbar-collapse.in {
+  border-top: 1px solid #eaeaea;
+}

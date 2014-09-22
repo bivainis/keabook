@@ -1,15 +1,14 @@
 //@import url(http://fonts.googleapis.com/css?family=Lobster|Roboto+Condensed:300italic,400);
 @import "_sass/colors";
+@import "_sass/bootstrap_overrides";
 
 html, body {
   height: 100%;
 }
-a {
-  color: $blue;
-  &:hover,
-  &:focus {
-    color: $red;
-  }
+body {
+  background:white;
+  color:$blue;
+  font-family: 'Roboto', sans-serif;
 }
 .homePromo {
   position: relative;
@@ -33,22 +32,3 @@ a {
   }
 }
 
-body {
-  background:white;
-  color:$blue;
-  font-family: 'Roboto', sans-serif;
-}
-.nav-custom {
-  margin-bottom: 0;
-  background-color: #fff;
-  border-bottom: 1px solid $ligthBlue;
-}
-.navbar-toggle {
-  padding: 6px 10px;
-}
-.nav>li>a:hover, .nav>li>a:focus {
-  background-color: transparent;
-}
-.navbar-collapse.in {
-  border-top: 1px solid #eaeaea;
-}

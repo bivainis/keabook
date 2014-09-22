@@ -1,10 +1,38 @@
-html, body {
-  height: 100%; }
-
 a {
   color: #2F3440; }
   a:hover, a:focus {
     color: #EA6045; }
+
+.btn-default:hover,
+.btn-default:focus,
+.btn-default:active,
+.btn-default.active,
+.open > .dropdown-toggle.btn-default {
+  background-color: transparent;
+  border-color: #EA6045;
+  color: #EA6045; }
+
+.nav-custom {
+  margin-bottom: 0;
+  background-color: #fff;
+  border-bottom: 1px solid #3F5666; }
+
+.navbar-toggle {
+  padding: 6px 10px; }
+
+.nav > li > a:hover, .nav > li > a:focus {
+  background-color: transparent; }
+
+.navbar-collapse.in {
+  border-top: 1px solid #eaeaea; }
+
+html, body {
+  height: 100%; }
+
+body {
+  background: white;
+  color: #2F3440;
+  font-family: 'Roboto', sans-serif; }
 
 .homePromo {
   position: relative;
@@ -23,24 +51,5 @@ a {
   font-family: 'Lobster', cursive; }
   .logotype.logotype-lg {
     font-size: 2em; }
-
-body {
-  background: white;
-  color: #2F3440;
-  font-family: 'Roboto', sans-serif; }
-
-.nav-custom {
-  margin-bottom: 0;
-  background-color: #fff;
-  border-bottom: 1px solid #3F5666; }
-
-.navbar-toggle {
-  padding: 6px 10px; }
-
-.nav > li > a:hover, .nav > li > a:focus {
-  background-color: transparent; }
-
-.navbar-collapse.in {
-  border-top: 1px solid #eaeaea; }
 
 /*# sourceMappingURL=style.css.map */
