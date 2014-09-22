@@ -11,7 +11,7 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 main > .container {
-  height: inherit;
+  height: inherit; // gets the same height as main, don't need to set it in js separately
 }
 .homePromo {
   position: relative;

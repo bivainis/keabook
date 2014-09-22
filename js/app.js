@@ -24,7 +24,7 @@ $(function() {
     var wHeight = window.innerHeight,
         navHeight = $('.navbar-header').height() + 1; // +1px to account for border
 
-    $('main, main > .container').height(wHeight - navHeight);
+    $('main').height(wHeight - navHeight);
 
     $('[data-open]').on('click', function(){
 
