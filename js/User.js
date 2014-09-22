@@ -5,11 +5,21 @@ var User = (function(){
 
     var _userTable;
 
-    var _userExists = function (data) {
-        var i = 0;
+    var _userExists = function (data, email) {
+        var i = 0,
+            email = email,
+            emails = [];
+
         for(; i<data.length; i++){
-            //console.log(data);
+
+            emails.push(data[i].email);
         }
+
+        if(emails.indexOf(email) != -1) {
+
+            return true;
+        }
+
         return false;
     };
     var _generateUserId = function (data) {
@@ -28,18 +38,23 @@ var User = (function(){
         return newId;
     };
     var _getGravatar = function (email) {
-        return 'ajdfhasdfjlhjlsdfk';
+
+        var hash;
+        // todo: hash email with md5
+
+
+        return hash;
     };
 
     var make = function(formData) {
-
 
         // check if there are any users in local storage
         _userTable = localStorage.keabookUsers ? JSON.parse(localStorage.keabookUsers) : [];
 
         // check if email already exists
-        if(_userExists(_userTable)){
-
+        if(_userExists(_userTable, formData.email)){
+            // todo: modal instead of alert
+            alert('Email already exists, please log in or choose a different email');
             return false;
         }
 
@@ -60,10 +75,7 @@ var User = (function(){
 
         localStorage.keabookUsers = JSON.stringify(_userTable, null, ' ');
 
-        if (localStorage.keabookUsers){
-
-            alert('All set');
-        }
+        // todo: inform about success
     };
 
     return {
