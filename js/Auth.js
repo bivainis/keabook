@@ -37,6 +37,8 @@ var Auth = (function(){
             } else {
                 alert('Password did not match, try again');
             }
+        } else {
+            alert('User not found. Please use a registration form to sign up');
         }
     };
     return {
