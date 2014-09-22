@@ -1,4 +1,4 @@
-@import url(http://fonts.googleapis.com/css?family=Lobster|Roboto+Condensed:300italic,400);
+//@import url(http://fonts.googleapis.com/css?family=Lobster|Roboto+Condensed:300italic,400);
 @import "_sass/colors";
 
 html, body {
@@ -12,10 +12,12 @@ a {
   }
 }
 .homePromo {
-  margin-top:40%;
+  position: relative;
+  top: 50%;
+  margin-top: -100px;
+  text-align: center;
   h1 {
-    text-align: center;
-    margin:0;
+    margin:0 0 1em;
   }
   .caption {
     display: block;
@@ -46,4 +48,7 @@ body {
 }
 .nav>li>a:hover, .nav>li>a:focus {
   background-color: transparent;
+}
+.navbar-collapse.in {
+  border-top: 1px solid #eaeaea;
 }

@@ -1,4 +1,3 @@
-@import url(http://fonts.googleapis.com/css?family=Lobster|Roboto+Condensed:300italic,400);
 html, body {
   height: 100%; }
 
@@ -8,10 +7,12 @@ a {
     color: #EA6045; }
 
 .homePromo {
-  margin-top: 40%; }
+  position: relative;
+  top: 50%;
+  margin-top: -100px;
+  text-align: center; }
   .homePromo h1 {
-    text-align: center;
-    margin: 0; }
+    margin: 0 0 1em; }
   .homePromo .caption {
     display: block;
     font-size: 0.6em;
@@ -38,5 +39,8 @@ body {
 
 .nav > li > a:hover, .nav > li > a:focus {
   background-color: transparent; }
+
+.navbar-collapse.in {
+  border-top: 1px solid #eaeaea; }
 
 /*# sourceMappingURL=style.css.map */
