@@ -7,11 +7,16 @@ a {
   a:hover, a:focus {
     color: #EA6045; }
 
-.homePromo h1 {
-  text-align: center; }
-.homePromo .caption {
-  display: block;
-  font-size: 0.5em; }
+.homePromo {
+  margin-top: 40%; }
+  .homePromo h1 {
+    text-align: center;
+    margin: 0; }
+  .homePromo .caption {
+    display: block;
+    font-size: 0.6em;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-style: italic; }
 
 .logotype {
   font-family: 'Lobster', cursive; }
