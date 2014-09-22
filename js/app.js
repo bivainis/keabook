@@ -1,6 +1,7 @@
 // todo:
 // create and init auth module
 // validator module
+// combine and minify js
 // if not logged in then show home page
 // use bootstrap modals for login/signup
 // maybe realtime chat?
@@ -16,6 +17,8 @@
 // Auth stores login time and logout after inactivity of 1 hour, unless 'rememberMe' is clicked when logging in
 //
 // Navigator loads partials to view, if user is logged in
+//
+
 
 $(function() {
     var wHeight = window.innerHeight,
@@ -38,5 +41,9 @@ $(function() {
 
         //
 
+    });
+    $('[data-view]').on('click', function(){
+
+        Navigator.loadView($(this).attr('data-view'));
     });
 });
