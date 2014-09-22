@@ -1,0 +1,48 @@
+{
+    "users" : [
+        {
+            "id" : 1,
+            "name" : "Gediminas",
+            "surname" : "Bivainis",
+            "email" : "gediminas@bivainis.com",
+            "password" : "{ cryptojs hash }",
+            "loggedIn" : false,
+            "type" : 1,
+            "gravatar" : "{ hash }",
+            "createdAt" : "{ unix timestamp }",
+            "updatedAt" : "{ unix timestamp }"
+        }
+    ],
+    "posts" : [
+        {
+            "id" : 1,
+            "userId" : 1,
+            "title" : "Hello World",
+            "body" : "This is the first post",
+            "location" : "{ geo data }",
+            "postedAt" : "{ unix timestamp }",
+            "updatedAt" : "{ unix timestamp }"
+        }
+    ],
+    "comments" : [
+        {
+            "id" : 1,
+            "userId" : 1,
+            "postId" : 1,
+            "body" : "Great post, yo!",
+            "location" : "{ geo data }",
+            "postedAt" : "{ unix timestamp }",
+            "updatedAt" : "{ unix timestamp }"
+        }
+    ],
+    "messages" : [
+        {
+            "id" : 1,
+            "senderId" : 1,
+            "receiverId" : 2,
+            "body" : "Hi John, what's up?",
+            "location" : "{ geodata }",
+            "sentAt" : "{ unix timestamp }"
+        }
+    ]
+}
