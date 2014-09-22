@@ -9,6 +9,7 @@ var Navigator = (function(){
     };
     var loadView = function(partialName){
         // todo: load default home view if not logged in
+        // todo: if view is adminpanel, check if user type is 1
         // todo: check if current view is not target view
         // todo: store loaded views for quick access and saving on http requests
         // todo: show preloader
