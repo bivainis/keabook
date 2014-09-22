@@ -1,11 +1,6 @@
-// pseudo
-
-// login
-//
-
-
 // todo:
-// login
+// create and init auth module
+// validate inputs
 // if not logged in then show home page
 // maybe realtime chat?
 // ajax content requests
@@ -14,7 +9,19 @@
 $(function() {
     var wHeight = window.innerHeight,
         navHeight = $('.navbar-header').height() + 1; // +1px to account for border
-    console.log(wHeight - navHeight);
+
     $('main, main > .container').height(wHeight - navHeight);
 
+    $('[data-open]').on('click', function(){
+
+        var target = $(this).attr('data-open'),
+            popup = $('.popup');
+
+        popup.hide().children().hide();
+        $('#' + target).show();
+        popup.show();
+
+
+    });
 });
+
