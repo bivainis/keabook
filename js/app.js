@@ -42,7 +42,9 @@ $(function() {
         //
 
     });
-    $('[data-view]').on('click', function(){
+    $('[data-view]').on('click', function(e){
+
+        e.preventDefault();
 
         Navigator.loadView($(this).attr('data-view'));
     });

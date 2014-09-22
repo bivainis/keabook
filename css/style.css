@@ -50,6 +50,9 @@ body {
   color: #2F3440;
   font-family: 'Roboto', sans-serif; }
 
+main > .container {
+  height: inherit; }
+
 .homePromo {
   position: relative;
   top: 50%;

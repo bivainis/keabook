@@ -10,6 +10,9 @@ body {
   color:$blue;
   font-family: 'Roboto', sans-serif;
 }
+main > .container {
+  height: inherit;
+}
 .homePromo {
   position: relative;
   top: 50%;
