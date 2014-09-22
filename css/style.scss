@@ -1,0 +1,23 @@
+@import url(http://fonts.googleapis.com/css?family=Lobster);
+@import "_sass/colors";
+
+a {
+  color: $blue;
+  &:hover,
+  &:focus {
+    color: $ligthBlue;
+  }
+}
+.logotype {
+  font-family: 'Lobster', cursive;
+}
+body {
+  background:$whitish;
+  color:$blue;
+}
+.nav-custom {
+  margin-bottom: 0;
+  background-color: #fff;
+  border-bottom: 1px solid $ligthBlue;
+
+}

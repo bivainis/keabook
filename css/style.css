@@ -1,0 +1,19 @@
+@import url(http://fonts.googleapis.com/css?family=Lobster);
+a {
+  color: #2F3440; }
+  a:hover, a:focus {
+    color: #3F5666; }
+
+.logotype {
+  font-family: 'Lobster', cursive; }
+
+body {
+  background: #F5E5C0;
+  color: #2F3440; }
+
+.nav-custom {
+  margin-bottom: 0;
+  background-color: #fff;
+  border-bottom: 1px solid #3F5666; }
+
+/*# sourceMappingURL=style.css.map */
