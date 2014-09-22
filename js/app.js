@@ -44,10 +44,13 @@ $(function() {
 
         if (currentForm == 'signupForm') {
 
-            var email = $(this).find('#signupEmail').val();
-            var pass = $(this).find('#signupPassword').val();
-            var passRepeat = $(this).find('#signupPasswordRepeat').val();
-            var fields = {
+            var email, pass, passRepeat, fields;
+
+            email = $(this).find('#signupEmail').val();
+            pass = $(this).find('#signupPassword').val();
+            passRepeat = $(this).find('#signupPasswordRepeat').val();
+
+            fields = {
                 email : email,
                 password : pass,
                 passwordRepeat : passRepeat
@@ -57,6 +60,18 @@ $(function() {
             if(Validator.check(fields)){
 
                 User.make(fields);
+            }
+        } else if (currentForm == 'loginForm'){
+
+            var email, pass;
+
+            email = $(this).find('#loginEmail').val();
+            pass = $(this).find('#loginPassword').val();
+
+            // if validator returns true, create a new user
+            if(Validator.check(fields)){
+
+                Auth.login(email, pass);
             }
         }
     });
