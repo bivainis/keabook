@@ -28,3 +28,19 @@ a {
 .navbar-collapse.in {
   border-top: 1px solid #eaeaea;
 }
+.btn {
+  border-radius: 7px;
+}
+.btn:focus, .btn:active:focus, .btn.active:focus {
+  outline: none;
+}
+.btn-primary {
+  color: $blue;
+  background-color: $yellow;
+  border-color: #adadad;
+}
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .open>.dropdown-toggle.btn-primary {
+  color: $whitish;
+  background-color: $red;
+  border-color: #adadad;
+}
