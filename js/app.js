@@ -60,6 +60,7 @@ $(function() {
             }
         }
     });
+
     $('[data-view]').on('click', function(e){
 
         e.preventDefault();

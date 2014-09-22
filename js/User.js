@@ -5,12 +5,19 @@ var User = (function(){
 
     var _userTable;
 
+    var _userExists = function (data) {
+        var i = 0;
+        for(; i<data.length; i++){
+            //console.log(data);
+        }
+        return false;
+    };
     var _generateUserId = function (data) {
 
         var newId;
 
         if (data.length > 0){
-            var lastInsert = data.splice(-1),
+            var lastInsert = data.slice(-1),
                 lastId = lastInsert[0].id;
 
             newId = lastId+1;
@@ -26,19 +33,24 @@ var User = (function(){
 
     var make = function(formData) {
 
-        // todo: check if there are any users in local storage
-        // if no users found, create with id 1
+
+        // check if there are any users in local storage
         _userTable = localStorage.keabookUsers ? JSON.parse(localStorage.keabookUsers) : [];
 
-        console.log();
+        // check if email already exists
+        if(_userExists(_userTable)){
+
+            return false;
+        }
+
         _userTable.push({
             "id" : _generateUserId(_userTable),
-            "name" : undefined,
-            "surname" : undefined,
+            //"name" : undefined,
+            //"surname" : undefined,
             "email" : formData.email,
             "password" : formData.password,
-            "loggedIn" : false,
-            "loginAt" : "{ unix timestamp }",
+            "loggedIn" : false, // default
+            "lastLoginAt" : null,
             "rememberMe" : 0,
             "type" : 0, // 0 - regular, 1 - admin
             "gravatar" : _getGravatar(formData.email),
