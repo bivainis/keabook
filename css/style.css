@@ -1,19 +1,37 @@
-@import url(http://fonts.googleapis.com/css?family=Lobster);
+@import url(http://fonts.googleapis.com/css?family=Lobster|Roboto+Condensed:300italic,400);
+html, body {
+  height: 100%; }
+
 a {
   color: #2F3440; }
   a:hover, a:focus {
-    color: #3F5666; }
+    color: #EA6045; }
+
+.homePromo h1 {
+  text-align: center; }
+.homePromo .caption {
+  display: block;
+  font-size: 0.5em; }
 
 .logotype {
   font-family: 'Lobster', cursive; }
+  .logotype.logotype-lg {
+    font-size: 2em; }
 
 body {
-  background: #F5E5C0;
-  color: #2F3440; }
+  background: white;
+  color: #2F3440;
+  font-family: 'Roboto', sans-serif; }
 
 .nav-custom {
   margin-bottom: 0;
   background-color: #fff;
   border-bottom: 1px solid #3F5666; }
+
+.navbar-toggle {
+  padding: 6px 10px; }
+
+.nav > li > a:hover, .nav > li > a:focus {
+  background-color: transparent; }
 
 /*# sourceMappingURL=style.css.map */

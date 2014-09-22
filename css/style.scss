@@ -1,23 +1,45 @@
-@import url(http://fonts.googleapis.com/css?family=Lobster);
+@import url(http://fonts.googleapis.com/css?family=Lobster|Roboto+Condensed:300italic,400);
 @import "_sass/colors";
 
+html, body {
+  height: 100%;
+}
 a {
   color: $blue;
   &:hover,
   &:focus {
-    color: $ligthBlue;
+    color: $red;
+  }
+}
+.homePromo {
+  h1 {
+    text-align: center;
+  }
+  .caption {
+    display: block;
+    font-size: 0.5em;
   }
 }
 .logotype {
   font-family: 'Lobster', cursive;
+  &.logotype-lg {
+    font-size:2em;
+  }
 }
+
 body {
-  background:$whitish;
+  background:white;
   color:$blue;
+  font-family: 'Roboto', sans-serif;
 }
 .nav-custom {
   margin-bottom: 0;
   background-color: #fff;
   border-bottom: 1px solid $ligthBlue;
-
+}
+.navbar-toggle {
+  padding: 6px 10px;
+}
+.nav>li>a:hover, .nav>li>a:focus {
+  background-color: transparent;
 }
