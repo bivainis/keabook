@@ -3,6 +3,8 @@
  */
 var Navigator = (function(){
 
+    var _views = {};
+
     var _checkAuth = function (){
         // todo: check with Auth.check()
         return true;
@@ -23,18 +25,26 @@ var Navigator = (function(){
         var container = $('[data-viewport]'),
             url = '_partials/' + partialName + '.html';
 
+        // if target view html already exists in _views object, load that view, else - ajax
+        if(_views[partialName]){
 
-        $.ajax({
-            type: 'get',
-            url: url,
-            //async: false,
-            dataType: 'html',
+            container.html(_views[partialName]);
+        } else {
 
-            success : function(data){
+            $.ajax({
+                type: 'get',
+                url: url,
+                //async: false,
+                cache: false, // turn off cache so the views are always fresh (for development)
+                dataType: 'html',
+                success : function(data){
 
-                container.html(data);
-            }
-        });
+                    _views[partialName] = data;
+
+                    container.html(data);
+                }
+            });
+        }
     };
     return {
         loadView : loadView
