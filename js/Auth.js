@@ -3,17 +3,51 @@
  */
 var Auth = (function(){
 
+    var _currentUserIndex,
+        _userTable;
+
     var check = function() {
 
+        _userTable = localStorage.keabookUsers ? JSON.parse(localStorage.keabookUsers) : [];
+        var i = 0;
+
+        for(; i<_userTable.length; i++){
+
+            if(_userTable[i].loggedIn == true){
+                console.table(_userTable);
+                return {
+                    loggedIn : true,
+                    userId : _userTable[i].id
+                };
+            } else {
+
+                return false;
+            }
+        }
     };
     var logout = function(){
 
+        if(check()) {
+
+
+            var i = 0;
+
+            for(; i<_userTable.length; i++){
+
+                _userTable[i].loggedIn = _userTable[i].loggedIn ? false : false;
+            }
+            localStorage.keabookUsers = JSON.stringify(_userTable, null, ' ');
+            console.table(_userTable);
+        } else {
+
+console.log('false');
+        }
     };
     var login = function(email, pass){
 
         // compare email with existing emails
-        var _userTable = localStorage.keabookUsers ? JSON.parse(localStorage.keabookUsers) : [];
-        //console.table(_userTable);
+        _userTable = localStorage.keabookUsers ? JSON.parse(localStorage.keabookUsers) : [];
+
         var i = 0,
             email = email,
             emails = [];
@@ -26,21 +60,21 @@ var Auth = (function(){
         if(emails.indexOf(email) != -1) {
 
             // email found, check password
-            var currentUserIndex = emails.indexOf(email);
+            _currentUserIndex = emails.indexOf(email);
 
-            if(_userTable[currentUserIndex].password == pass){
+            if(_userTable[_currentUserIndex].password == pass){
 
                 // passwords match, login
                 // todo: hash
                 alert('Password matched, welcome');
 
                 // todo: set loggedin to true
-                _userTable[currentUserIndex].loggedIn = true;
+                _userTable[_currentUserIndex].loggedIn = true;
 
                 localStorage.keabookUsers = JSON.stringify(_userTable, null, ' ');
 
                 // todo: redirect to keabook
-
+                console.table(_userTable);
             } else {
                 alert('Password did not match, try again');
             }
