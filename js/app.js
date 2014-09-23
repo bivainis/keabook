@@ -89,7 +89,11 @@ $(function() {
 
         e.preventDefault();
 
-        $(".navbar-toggle").click() //bootstrap 3.x by Richard
+        // if navbar is expanded (mobile) then collapse it by simulating a click
+        if($('.navbar-collapse').hasClass('in')) {
+
+            $(".navbar-toggle").click();
+        }
 
         var view = $(this).attr('data-view');
 
