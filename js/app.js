@@ -18,8 +18,59 @@
 //
 // Navigator loads partials to view, if user is logged in
 //
+console.table(JSON.parse(localStorage.keabookUsers));
+$(document).on('click', '[data-open]', function () {
+    var target = $(this).attr('data-open'),
+        popup = $('.popup');
 
+    popup.hide().children().not('.actionButtons, .fa').hide();
+    $('#' + target).show();
+    popup.show();
+    var btns = $('.actionButtons').detach();
+    btns.appendTo(popup);
+    $('[data-closepopup]').on('click', function(){
+        popup.hide();
+        $('.homePromo').append(btns);
+    });
+});
+$(document).on('submit', 'form', function (e) {
+    e.preventDefault();
 
+    var currentForm = $(this).attr('id');
+
+    if (currentForm == 'signupForm') {
+
+        var email, pass, passRepeat, fields;
+
+        email = $(this).find('#signupEmail').val();
+        pass = $(this).find('#signupPassword').val();
+        passRepeat = $(this).find('#signupPasswordRepeat').val();
+
+        fields = {
+            email : email,
+            password : pass,
+            passwordRepeat : passRepeat
+        };
+
+        // if validator returns true, create a new user
+        if(Validator.check(fields)){
+
+            User.make(fields);
+        }
+    } else if (currentForm == 'loginForm'){
+
+        var email, pass;
+
+        email = $(this).find('#loginEmail').val();
+        pass = $(this).find('#loginPassword').val();
+
+        // if validator returns true, create a new user
+        if(Validator.check(fields)){
+
+            Auth.login(email, pass);
+        }
+    }
+});
 $(function() {
 
     var wHeight = window.innerHeight,
@@ -27,7 +78,7 @@ $(function() {
 
     $('main').height(wHeight - navHeight);
 
-    $('[data-open]').on('click', function(){
+    /*$('[data-open]').on('click', function(){
 
         var target = $(this).attr('data-open'),
             popup = $('.popup');
@@ -41,11 +92,11 @@ $(function() {
             popup.hide();
             $('.homePromo').append(btns);
         });
-    });
+    });*/
 
 
 
-    $('form').on('submit', function(e) {
+    /*$('form').on('submit', function(e) {
 
         e.preventDefault();
 
@@ -83,7 +134,7 @@ $(function() {
                 Auth.login(email, pass);
             }
         }
-    });
+    });*/
 
     $('[data-view]').on('click', function(e){
 
