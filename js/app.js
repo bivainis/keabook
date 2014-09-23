@@ -89,6 +89,8 @@ $(function() {
 
         e.preventDefault();
 
+        $(".navbar-toggle").click() //bootstrap 3.x by Richard
+
         var view = $(this).attr('data-view');
 
         Navigator.loadView(view);
