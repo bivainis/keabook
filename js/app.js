@@ -21,6 +21,7 @@
 
 
 $(function() {
+
     var wHeight = window.innerHeight,
         navHeight = $('.navbar-header').height() + 1; // +1px to account for border
 
@@ -31,10 +32,18 @@ $(function() {
         var target = $(this).attr('data-open'),
             popup = $('.popup');
 
-        popup.hide().children().hide();
+        popup.hide().children().not('.actionButtons, .fa').hide();
         $('#' + target).show();
         popup.show();
+        var btns = $('.actionButtons').detach();
+        btns.appendTo(popup);
+        $('[data-closepopup]').on('click', function(){
+            popup.hide();
+            $('.homePromo').append(btns);
+        });
     });
+
+
 
     $('form').on('submit', function(e) {
 

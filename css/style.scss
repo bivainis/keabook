@@ -19,7 +19,7 @@ main > .container {
   margin-top: -100px;
   text-align: center;
   h1 {
-    margin:0 0 1em;
+    margin:0;
   }
   .caption {
     display: block;
@@ -37,8 +37,12 @@ main > .container {
 .popup {
   display: none;
   position: relative;
-  background:rgba(255,255,255,0.8);
+  background:rgba(255,255,255,0.9);
   padding:25px 15px;
+  text-align: center;
+  box-shadow: 0 0 2px -1px $blue;
+  top: 50%;
+  margin-top: -200px;
 }
 #signupForm, #loginForm {
   display: none;
@@ -67,4 +71,10 @@ main > .container {
     border-bottom-right-radius: 7px;
     border-top:none;
   }
+}
+.actionButtons {
+  margin-top:1em;
+}
+form > button {
+  margin-top:1em;
 }
