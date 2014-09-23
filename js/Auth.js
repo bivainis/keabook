@@ -4,7 +4,8 @@
 var Auth = (function(){
 
     var _currentUserIndex,
-        _userTable;
+        _userTable,
+        message;
 
     var check = function() {
 
@@ -26,7 +27,6 @@ var Auth = (function(){
 
         if(check()) {
 
-
             var i = 0;
 
             for(; i<_userTable.length; i++){
@@ -38,7 +38,7 @@ var Auth = (function(){
             Navigator.loadView('home');
         } else {
 
-            alert('You are not logged in');
+            message = 'You are not logged in';
         }
     };
     var login = function(email, pass){
@@ -64,7 +64,7 @@ var Auth = (function(){
 
                 // passwords match, login
                 // todo: hash
-                alert('Password matched, welcome');
+                message = 'Password matched, welcome';
 
                 // todo: set loggedin to true
                 _userTable[_currentUserIndex].loggedIn = true;
@@ -74,11 +74,12 @@ var Auth = (function(){
                 // todo: redirect to keabook
 
             } else {
-                alert('Password did not match, try again');
+                message = 'Password did not match, try again';
             }
         } else {
-            alert('User not found. Please use a registration form to sign up');
+            message = 'User not found. Please use a registration form to sign up';
         }
+        return message;
     };
     return {
         login : login,
