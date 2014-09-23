@@ -16,13 +16,15 @@ var Auth = (function(){
 
         for(; i<_userTable.length; i++){
 
-            toReturn = _userTable[i].loggedIn == true ?
-                {
+            if (_userTable[i].loggedIn == true){
+
+                return {
                     loggedIn : true,
                     userId : _userTable[i].id
-                } : false;
+                };
+            }
         }
-        return toReturn;
+        return false;
     };
     var logout = function(){
 
@@ -39,15 +41,15 @@ var Auth = (function(){
             Navigator.loadView('home');
         } else {
 
-            message = 'You are not logged in';
+            alert('You are not logged in');
         }
     };
     var login = function(email, pass){
 
         // if already logged in, warn user and escape
         if(authCheck()) {
-            message = 'To login please log out first';
-            return message;
+            alert('To login please log out first');
+            return;
         }
 
         var i = 0,

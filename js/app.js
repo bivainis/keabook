@@ -69,8 +69,13 @@ $(document).on('submit', 'form', function (e) {
 
             // login and retrieve notification message
             var notification = Auth.login(email, pass);
+            var notificationEl = '<p class="alert-warning alert-dismissable">' + notification +'</p>';
 
-            console.log(notification);
+            $('.popup .actionButtons').prepend(notificationEl);
+
+            setTimeout(function(){
+                Navigator.loadView('keabook');
+            }, 1000);
         }
     }
 });
