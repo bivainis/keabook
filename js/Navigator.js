@@ -5,15 +5,9 @@ var Navigator = (function(){
 
     var _views = {};
 
-    var _checkAuth = function (){
-        // todo: check with Auth.check()
-        return true;
-    };
     var loadView = function(partialName){
 
-        if(!_checkAuth()) {
-            return false;
-        }
+
         // todo: load default home view if not logged in
         // todo: if view is adminpanel, check if user type is 1
         // todo: check if current view is not target view
@@ -26,6 +20,10 @@ var Navigator = (function(){
             url = '_partials/' + partialName + '.html';
 
         // if target view html already exists in _views object, load that view, else - ajax
+        //if(!Auth.check()) {
+        //    container.html(_views['home']);
+        //    return;
+        //}
         if(_views[partialName]){
 
             container.html(_views[partialName]);
