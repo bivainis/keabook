@@ -14,7 +14,7 @@ var Auth = (function(){
         for(; i<_userTable.length; i++){
 
             if(_userTable[i].loggedIn == true){
-                console.table(_userTable);
+
                 return {
                     loggedIn : true,
                     userId : _userTable[i].id
@@ -37,10 +37,11 @@ var Auth = (function(){
                 _userTable[i].loggedIn = _userTable[i].loggedIn ? false : false;
             }
             localStorage.keabookUsers = JSON.stringify(_userTable, null, ' ');
-            console.table(_userTable);
+            // todo: redirect to home
+            Navigator.loadView('home');
         } else {
 
-console.log('false');
+            alert('You are not logged in');
         }
     };
     var login = function(email, pass){
@@ -74,7 +75,7 @@ console.log('false');
                 localStorage.keabookUsers = JSON.stringify(_userTable, null, ' ');
 
                 // todo: redirect to keabook
-                console.table(_userTable);
+
             } else {
                 alert('Password did not match, try again');
             }

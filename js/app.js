@@ -101,8 +101,16 @@ $(function() {
     });
 
     $('[data-logout]').on('click', function(e){
+
         e.preventDefault();
+
+        // if navbar is expanded (mobile) then collapse it by simulating a click
+        if($('.navbar-collapse').hasClass('in')) {
+
+            $(".navbar-toggle").click();
+        }
 
         Auth.logout();
     });
+
 });
