@@ -33,7 +33,14 @@ var Auth = (function(){
                 // passwords match, login
                 // todo: hash
                 alert('Password matched, welcome');
+
+                // todo: set loggedin to true
+                _userTable[currentUserIndex].loggedIn = true;
+
+                localStorage.keabookUsers = JSON.stringify(_userTable, null, ' ');
+
                 // todo: redirect to keabook
+
             } else {
                 alert('Password did not match, try again');
             }
