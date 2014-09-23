@@ -1,3 +1,4 @@
+@import url(http://fonts.googleapis.com/css?family=Lobster|Roboto+Condensed:300italic,400);
 a {
   color: #2F3440; }
   a:hover, a:focus {
@@ -74,9 +75,29 @@ main > .container {
 .popup {
   display: none;
   position: relative;
-  background: rgba(255, 255, 255, 0.8); }
+  background: rgba(255, 255, 255, 0.8);
+  padding: 25px 15px; }
 
 #signupForm, #loginForm {
   display: none; }
+
+.form-control {
+  border-radius: 0; }
+  .form-control:focus {
+    outline: #EA6045;
+    box-shadow: none;
+    border-color: #EA6045; }
+    .form-control:focus:first-of-type {
+      border-bottom: 1px solid #EA6045; }
+    .form-control:focus:last-of-type {
+      border-top: 1px solid #EA6045; }
+  .form-control:first-of-type {
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+    border-bottom: none; }
+  .form-control:last-of-type {
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+    border-top: none; }
 
 /*# sourceMappingURL=style.css.map */

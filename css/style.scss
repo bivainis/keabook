@@ -1,4 +1,4 @@
-//@import url(http://fonts.googleapis.com/css?family=Lobster|Roboto+Condensed:300italic,400);
+@import url(http://fonts.googleapis.com/css?family=Lobster|Roboto+Condensed:300italic,400);
 @import "_sass/colors";
 @import "_sass/bootstrap_overrides";
 
@@ -38,7 +38,33 @@ main > .container {
   display: none;
   position: relative;
   background:rgba(255,255,255,0.8);
+  padding:25px 15px;
 }
 #signupForm, #loginForm {
   display: none;
+}
+
+.form-control {
+  border-radius: 0;
+  &:focus {
+    outline:$red;
+    box-shadow: none;
+    border-color:$red;
+    &:first-of-type {
+      border-bottom:1px solid $red;
+    }
+    &:last-of-type {
+      border-top:1px solid $red;
+    }
+  }
+  &:first-of-type {
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+    border-bottom:none;
+  }
+  &:last-of-type {
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+    border-top:none;
+  }
 }
