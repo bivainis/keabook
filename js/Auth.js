@@ -7,10 +7,11 @@ var Auth = (function(){
         _userTable,
         message;
 
-    var check = function() {
+    var authCheck = function() {
 
         var i = 0,
             toReturn;
+
         _userTable = localStorage.keabookUsers ? JSON.parse(localStorage.keabookUsers) : [];
 
         for(; i<_userTable.length; i++){
@@ -25,7 +26,7 @@ var Auth = (function(){
     };
     var logout = function(){
 
-        if(check()) {
+        if(authCheck()) {
 
             var i = 0;
 
@@ -43,8 +44,11 @@ var Auth = (function(){
     };
     var login = function(email, pass){
 
-        // compare email with existing emails
-        _userTable = localStorage.keabookUsers ? JSON.parse(localStorage.keabookUsers) : [];
+        // if already logged in, warn user and escape
+        if(authCheck()) {
+            message = 'To login please log out first';
+            return message;
+        }
 
         var i = 0,
             email = email,
@@ -84,6 +88,6 @@ var Auth = (function(){
     return {
         login : login,
         logout : logout,
-        check : check
+        check : authCheck
     };
 }());
