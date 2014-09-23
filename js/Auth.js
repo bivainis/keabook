@@ -8,23 +8,17 @@ var Auth = (function(){
 
     var check = function() {
 
-        _userTable = localStorage.keabookUsers ? JSON.parse(localStorage.keabookUsers) : [];
         var i = 0,
             toReturn;
+        _userTable = localStorage.keabookUsers ? JSON.parse(localStorage.keabookUsers) : [];
 
         for(; i<_userTable.length; i++){
 
-            if(_userTable[i].loggedIn == true){
-
-                toReturn = {
+            toReturn = _userTable[i].loggedIn == true ?
+                {
                     loggedIn : true,
                     userId : _userTable[i].id
-                };
-            } else {
-
-                toReturn = false;
-            }
-
+                } : false;
         }
         return toReturn;
     };
