@@ -73,9 +73,14 @@ $(document).on('submit', 'form', function (e) {
 
             $('.popup .actionButtons').prepend(notificationEl);
 
-            setTimeout(function(){
-                Navigator.loadView('keabook');
-            }, 1000);
+            // if validation successful - redirect to keabook page
+            if(Auth.check()){
+
+                setTimeout(function(){
+
+                    Navigator.loadView('keabook');
+                }, 1000);
+            }
         }
     }
 });

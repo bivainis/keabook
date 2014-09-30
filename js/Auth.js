@@ -72,7 +72,7 @@ var Auth = (function(){
                 // todo: hash
                 message = 'Password matched, welcome';
 
-                // todo: set loggedin to true
+                // set loggedin to true
                 _userTable[_currentUserIndex].loggedIn = true;
 
                 localStorage.keabookUsers = JSON.stringify(_userTable, null, ' ');

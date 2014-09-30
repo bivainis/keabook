@@ -7,8 +7,6 @@ var Navigator = (function(){
 
     var loadView = function(partialName){
 
-
-        // todo: load default home view if not logged in
         // todo: if view is adminpanel, check if user type is 1
         // todo: check if current view is not target view
         // todo: store loaded views for quick access and saving on http requests
@@ -25,7 +23,6 @@ var Navigator = (function(){
             partialName = 'home';
             url = '_partials/' + partialName + '.html';
         }
-
 
         // if target view html already exists in _views object, load that view, else - ajax
         if(_views[partialName]){
