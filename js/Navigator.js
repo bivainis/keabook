@@ -23,6 +23,18 @@ var Navigator = (function(){
             partialName = 'home';
             url = '_partials/' + partialName + '.html';
         }
+        // when trying to access admin panel, check if user is admin,
+        // redirect to home if not
+        if(partialName == 'adminpanel'){
+
+            var authData = Auth.check();
+
+            if(authData.isAdmin == 0){
+
+                partialName = 'home';
+                url = '_partials/' + partialName + '.html';
+            }
+        }
 
         // if target view html already exists in _views object, load that view, else - ajax
         if(_views[partialName]){

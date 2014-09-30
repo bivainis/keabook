@@ -20,7 +20,8 @@ var Auth = (function(){
 
                 return {
                     loggedIn : true,
-                    userId : _userTable[i].id
+                    userId : _userTable[i].id,
+                    isAdmin : _userTable[i].type
                 };
             }
         }
