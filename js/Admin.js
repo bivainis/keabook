@@ -18,12 +18,17 @@ var Admin = (function(){
         // block user action
         tableEl.find('[data-blockuser]').click(function() {
 
-            var userToBlock = $(this).data('blockuser');
+            var currentBtn = $(this),
+                userToBlock = currentBtn.data('blockuser');
 
             _blockUser(userToBlock);
 
-            //
-            $(this).closest('tr').toggleClass('alert-danger');
+            // toggle danger class on the blocked user
+            currentBtn.closest('tr').toggleClass('alert-danger');
+
+            // toggle icon for user blocking button based on current class
+            currentBtn.find('span').toggleClass('fa-microphone-slash');
+            currentBtn.find('span').toggleClass('fa-microphone');
         });
     };
     var listUsers = function() {
@@ -37,12 +42,14 @@ var Admin = (function(){
 
         for (; i < _userTable.length; i++){
 
-            var rowClass = '';
+            var rowClass = '',
+                isBannedClass = 'fa-microphone-slash';
 
             if(_userTable[i].type == 1){
                 rowClass = 'alert-warning';
             } else if(_userTable[i].type == 6){
                 rowClass = 'alert-danger';
+                isBannedClass = 'fa-microphone';
             }
 
             tableData += '<tr class="alert ' + rowClass + '">' +
@@ -54,8 +61,8 @@ var Admin = (function(){
                 '<td>' + _userTable[i].login + '</td>' +
                 '<td>' +
                     '<button data-edituser="' + _userTable[i].id + '"><span class="fa fa-pencil fa-fw"></span></button>' +
-                    '<button data-blockuser="' + _userTable[i].id + '"><span class="fa fa-ban fa-fw"></span></button>' +
-                    '<button data-deleteuser="' + _userTable[i].id + '"><span class="fa fa-trash fa-fw"></span></button>' +
+                    '<button data-blockuser="' + _userTable[i].id + '"><span class="fa ' + isBannedClass + ' fa-fw"></span></button>' +
+                    '<button data-deleteuser="' + _userTable[i].id + '"><span class="fa fa-bomb fa-fw"></span></button>' +
                 '</td>' +
             '</tr>';
         }
@@ -83,7 +90,19 @@ var Admin = (function(){
     };
     var _blockUser = function(userID){
 
+        var i = 0;
 
+        for (; i < _userTable.length; i++){
+
+            if(_userTable[i].id == userID) {
+
+                // toggle user blocking
+                _userTable[i].type = _userTable[i].type == 6 ? 0 : 6;
+            }
+        }
+
+        // update data on storage
+        localStorage.keabookUsers = JSON.stringify(_userTable, null, ' ');
     };
     var _updateUser = function(userID) {
 

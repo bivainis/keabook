@@ -25,12 +25,16 @@ Admin can:
 4. delete user.
 5. todo: block user.
 6. todo: sort users by blocked, admins, etc
+7. todo: admin cannot be blocked
 
 Technical Specs. The program must:
 • Be single page
 • Use Localstorage
 • todo: Use Gravatars based on user email
 • todo: Use Geolocation
+todo: write a function for storing data to local storage
+todo: tooltips in admin panel
+todo: replace colors for bootstrap alerts
 
 Maybe:
 - load admin script only if user is admin
