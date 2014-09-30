@@ -19,15 +19,21 @@ var Navigator = (function(){
         var container = $('[data-viewport]'),
             url = '_partials/' + partialName + '.html';
 
+        // if authentication fails, then set url and partial name to home
+        if(!Auth.check()) {
+
+            partialName = 'home';
+            url = '_partials/' + partialName + '.html';
+        }
+
+
         // if target view html already exists in _views object, load that view, else - ajax
-        //if(!Auth.check()) {
-        //    container.html(_views['home']);
-        //    return;
-        //}
         if(_views[partialName]){
 
             container.html(_views[partialName]);
+
         } else {
+
 
             $.ajax({
                 type: 'get',

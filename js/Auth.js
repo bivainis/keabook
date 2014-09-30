@@ -32,7 +32,7 @@ var Auth = (function(){
 
             var i = 0;
 
-            for(; i<_userTable.length; i++){
+            for(; i < _userTable.length; i++){
 
                 _userTable[i].loggedIn = _userTable[i].loggedIn ? false : false;
             }
