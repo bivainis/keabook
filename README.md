@@ -21,7 +21,7 @@ Admin can:
 1. Access admin page.
 2. todo: List all users.
 3. todo: Edit user.
-4. todo: delete user.
+4. delete user.
 5. todo: block user.
 
 Technical Specs. The program must:
