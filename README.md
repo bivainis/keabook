@@ -18,14 +18,18 @@ Member can:
 8. todo: Send messages.
 
 Admin can:
-1. todo: See admin page.
+1. Access admin page.
 2. todo: List all users.
 3. todo: Edit user.
 4. todo: delete user.
 5. todo: block user.
 
-Technical Specs, the program must:
-• Be singlepage
+Technical Specs. The program must:
+• Be single page
 • Use Localstorage
-• Use Gravatars
-• Use Geolocation
+• todo: Use Gravatars based on user email
+• todo: Use Geolocation
+
+Maybe:
+- load admin script only if user is admin
+- check if

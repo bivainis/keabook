@@ -43,7 +43,6 @@ var Navigator = (function(){
 
         } else {
 
-
             $.ajax({
                 type: 'get',
                 url: url,
@@ -54,7 +53,13 @@ var Navigator = (function(){
 
                     _views[partialName] = data;
 
+
                     container.html(data);
+
+                    if(partialName == 'adminpanel'){
+
+                        Admin.listUsers();
+                    }
                 }
             });
         }
