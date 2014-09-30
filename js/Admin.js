@@ -2,6 +2,30 @@ var Admin = (function(){
 
     var _userTable;
 
+    var _assignAdminActions = function(tableEl) {
+
+        // delete user action
+        tableEl.find('[data-deleteuser]').click(function() {
+
+            var userToDelete = $(this).data('deleteuser');
+
+            _deleteUser(userToDelete);
+
+            // remove user row from table
+            $(this).closest('tr').remove();
+        });
+
+        // block user action
+        tableEl.find('[data-blockuser]').click(function() {
+
+            var userToBlock = $(this).data('blockuser');
+
+            _blockUser(userToBlock);
+
+            //
+            $(this).closest('tr').toggleClass('alert-danger');
+        });
+    };
     var listUsers = function() {
 
         var i = 0,
@@ -13,34 +37,36 @@ var Admin = (function(){
 
         for (; i < _userTable.length; i++){
 
-            tableData += '<tr>' +
+            var rowClass = '';
+
+            if(_userTable[i].type == 1){
+                rowClass = 'alert-warning';
+            } else if(_userTable[i].type == 6){
+                rowClass = 'alert-danger';
+            }
+
+            tableData += '<tr class="alert ' + rowClass + '">' +
                 '<td>' + _userTable[i].id + '</td>' +
                 '<td>' + _userTable[i].name + ' ' + _userTable[i].surname + '</td>' +
                 '<td>' + _userTable[i].email + '</td>' +
                 '<td>' + _userTable[i].type + '</td>' +
                 '<td>' + _userTable[i].created + '</td>' +
                 '<td>' + _userTable[i].login + '</td>' +
-                '<td><button data-deleteuser="' + _userTable[i].id + '"><span class="fa fa-trash"></span></button></td>' +
+                '<td>' +
+                    '<button data-edituser="' + _userTable[i].id + '"><span class="fa fa-pencil fa-fw"></span></button>' +
+                    '<button data-blockuser="' + _userTable[i].id + '"><span class="fa fa-ban fa-fw"></span></button>' +
+                    '<button data-deleteuser="' + _userTable[i].id + '"><span class="fa fa-trash fa-fw"></span></button>' +
+                '</td>' +
             '</tr>';
         }
 
         tableEl.append(tableData);
 
-        tableEl.find('[data-deleteuser]').click(function() {
-
-            var userToDelete = $(this).data('deleteuser');
-
-            deleteUser(userToDelete);
-
-            // remove user row from table
-            $(this).closest('tr').remove();
-        });
-
+        _assignAdminActions(tableEl);
     };
-    var deleteUser = function(userID){
+    var _deleteUser = function(userID){
 
         // remove user from user data array
-
         var i = 0;
 
         for(; i < _userTable.length; i++){
@@ -55,18 +81,15 @@ var Admin = (function(){
         // update data on storage
         localStorage.keabookUsers = JSON.stringify(_userTable, null, ' ');
     };
-    var blockUser = function(userID){
+    var _blockUser = function(userID){
 
 
     };
-    var updateUser = function(userID) {
+    var _updateUser = function(userID) {
 
 
     };
     return {
-        listUsers : listUsers,
-        deleteUser : deleteUser,
-        blockUser : blockUser,
-        updateUser : updateUser
+        listUsers : listUsers
     };
 }());
