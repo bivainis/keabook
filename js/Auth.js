@@ -37,8 +37,10 @@ var Auth = (function(){
 
                 _userTable[i].loggedIn = _userTable[i].loggedIn ? false : false;
             }
+            // save data
             localStorage.keabookUsers = JSON.stringify(_userTable, null, ' ');
-            // todo: redirect to home
+
+            // redirect to home
             Navigator.loadView('home');
         } else {
 
@@ -47,15 +49,15 @@ var Auth = (function(){
     };
     var login = function(email, pass){
 
+        var i = 0,
+            email = email,
+            emails = [];
+
         // if already logged in, warn user and escape
         if(authCheck()) {
             alert('To login please log out first');
             return;
         }
-
-        var i = 0,
-            email = email,
-            emails = [];
 
         for(; i<_userTable.length; i++){
 
@@ -67,7 +69,7 @@ var Auth = (function(){
             // email found, check password
             _currentUserIndex = emails.indexOf(email);
 
-            if(_userTable[_currentUserIndex].password == pass){
+            if(_userTable[_currentUserIndex].password == pass && _userTable[_currentUserIndex].type != 6){
 
                 // passwords match, login
                 // todo: hash
@@ -78,10 +80,8 @@ var Auth = (function(){
 
                 localStorage.keabookUsers = JSON.stringify(_userTable, null, ' ');
 
-                // todo: redirect to keabook
-
             } else {
-                message = 'Password did not match, try again';
+                message = 'Password did not match, or user blocked';
             }
         } else {
             message = 'User not found. Please use a registration form to sign up';
