@@ -9,37 +9,40 @@ Guest can:
 2. See homepage
 
 Member can:
-1. Navigate through pages
-2. todo: Edit account information
-3. todo: if user is blocked, don't allow login
-4. todo: Create posts.
-5. todo: Comment posts.
-6. todo: Delete posts.
-7. todo: See other users and posts.
-8. todo: Send messages.
+- Navigate through pages
+- If user is blocked, don't allow login
+- todo: view profile
+- todo: Edit profile information
+- todo: Create posts.
+- todo: Comment posts.
+- todo: Delete posts.
+- todo: See other users and posts.
+- todo: Send messages.
+- maybe: view other's profiles
 
 Admin can:
-1. Access admin page.
-2. List all users.
-3. Edit user.
-4. Delete user.
-5. Block user.
-6. maybe: sort users by blocked, admins, etc
-7. maybe: admin cannot be blocked
-8. maybe: dropdown for user roles
+- Access admin page.
+- List all users.
+- Edit a user.
+- Delete a user.
+- Block a user.
+- maybe: sort users by blocked, admins, etc
+- maybe: admin cannot be blocked
+- maybe: dropdown for user roles
 
 Technical Specs. The program must:
 • Be single page
 • Use Localstorage
 • todo: Use Gravatars based on user email,
 • todo: Use Geolocation
-todo: write a function for storing data to local storage
-todo: tooltips in admin panel
-todo: replace colors for bootstrap alerts
-todo: add gravatars to admin panel user list
-todo: refactor admin module
+
+Misc.
+- todo: write a function for storing data to local storage
+- todo: tooltips in admin panel
+- todo: replace colors for bootstrap alerts
+- todo: add gravatars to admin panel user list
+- todo: refactor admin module
 
 Maybe:
-- load admin script only if user is admin
-- check if
-- smoother ux - animations and fades?
+- todo: load admin script only if user is admin
+- todo: smoother ux - animations and fades
