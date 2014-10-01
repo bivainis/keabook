@@ -41,6 +41,10 @@ var Navigator = (function(){
 
             container.html(_views[partialName]);
 
+            if(partialName == 'adminpanel'){
+
+                Admin.listUsers();
+            }
         } else {
 
             $.ajax({

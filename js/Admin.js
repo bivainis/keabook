@@ -2,35 +2,6 @@ var Admin = (function(){
 
     var _userTable;
 
-    var _assignAdminActions = function(tableEl) {
-
-        // delete user action
-        tableEl.find('[data-deleteuser]').click(function() {
-
-            var userToDelete = $(this).data('deleteuser');
-
-            _deleteUser(userToDelete);
-
-            // remove user row from table
-            $(this).closest('tr').remove();
-        });
-
-        // block user action
-        tableEl.find('[data-blockuser]').click(function() {
-
-            var currentBtn = $(this),
-                userToBlock = currentBtn.data('blockuser');
-
-            _blockUser(userToBlock);
-
-            // toggle danger class on the blocked user
-            currentBtn.closest('tr').toggleClass('alert-danger');
-
-            // toggle icon for user blocking button based on current class
-            currentBtn.find('span').toggleClass('fa-microphone-slash');
-            currentBtn.find('span').toggleClass('fa-microphone');
-        });
-    };
     var listUsers = function() {
 
         var i = 0,
@@ -54,9 +25,9 @@ var Admin = (function(){
 
             tableData += '<tr class="alert ' + rowClass + '">' +
                 '<td>' + _userTable[i].id + '</td>' +
-                '<td>' + _userTable[i].name + ' ' + _userTable[i].surname + '</td>' +
-                '<td>' + _userTable[i].email + '</td>' +
-                '<td>' + _userTable[i].type + '</td>' +
+                '<td data-name>' + _userTable[i].name + ' ' + _userTable[i].surname + '</td>' +
+                '<td data-email>' + _userTable[i].email + '</td>' +
+                '<td data-role>' + _userTable[i].type + '</td>' +
                 '<td>' + _userTable[i].created + '</td>' +
                 '<td>' + _userTable[i].login + '</td>' +
                 '<td>' +
@@ -104,9 +75,62 @@ var Admin = (function(){
         // update data on storage
         localStorage.keabookUsers = JSON.stringify(_userTable, null, ' ');
     };
-    var _updateUser = function(userID) {
+    var _updateUser = function(userID, data) {
+
+        // todo: replace user data with input fields
+        console.log(data);
+
+        // todo: validate popup data
+
+        // todo: toggle save button
+
+        // todo: update localStorage
+
+        //_saveUserData();
+    };
+
+    var _assignAdminActions = function(tableEl) {
+
+        // delete user action
+        tableEl.find('[data-deleteuser]').click(function() {
+
+            var userToDelete = $(this).data('deleteuser');
+
+            _deleteUser(userToDelete);
+
+            // remove user row from table
+            $(this).closest('tr').remove();
+        });
+
+        // block user action
+        tableEl.find('[data-blockuser]').click(function() {
+
+            var currentBtn = $(this),
+                userToBlock = currentBtn.data('blockuser');
+
+            _blockUser(userToBlock);
+
+            // toggle danger class on the blocked user
+            currentBtn.closest('tr').toggleClass('alert-danger');
+
+            // toggle icon for user blocking button based on current class
+            currentBtn.find('span').toggleClass('fa-microphone-slash');
+            currentBtn.find('span').toggleClass('fa-microphone');
+        });
+
+        // delete user action
+        tableEl.find('[data-edituser]').click(function() {
+
+            var currentBtn = $(this),
+                userToEdit = currentBtn.data('edituser');
 
 
+
+
+            // toggle icon for user blocking button based on current class
+            currentBtn.find('span').toggleClass('fa-pencil');
+            currentBtn.find('span').toggleClass('fa-save');
+        });
     };
     return {
         listUsers : listUsers

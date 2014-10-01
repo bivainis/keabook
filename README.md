@@ -23,19 +23,22 @@ Admin can:
 2. List all users.
 3. todo: Edit user.
 4. delete user.
-5. todo: block user.
+5. block user.
 6. todo: sort users by blocked, admins, etc
 7. todo: admin cannot be blocked
+8. todo: dropdown for user roles
 
 Technical Specs. The program must:
 • Be single page
 • Use Localstorage
-• todo: Use Gravatars based on user email
+• todo: Use Gravatars based on user email,
 • todo: Use Geolocation
 todo: write a function for storing data to local storage
 todo: tooltips in admin panel
 todo: replace colors for bootstrap alerts
+todo: add gravatars to admin panel user list
 
 Maybe:
 - load admin script only if user is admin
 - check if
+- smoother ux - animations and fades?
