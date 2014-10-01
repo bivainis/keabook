@@ -1,6 +1,7 @@
 var Admin = (function(){
 
-    var _userTable;
+    var _userTable,
+        _editUsersMode;
 
     var listUsers = function() {
 
@@ -25,7 +26,8 @@ var Admin = (function(){
 
             tableData += '<tr class="alert ' + rowClass + '">' +
                 '<td>' + _userTable[i].id + '</td>' +
-                '<td data-name>' + _userTable[i].name + ' ' + _userTable[i].surname + '</td>' +
+                '<td data-name>' + _userTable[i].name + '</td>' +
+                '<td data-surname>' + _userTable[i].surname + '</td>' +
                 '<td data-email>' + _userTable[i].email + '</td>' +
                 '<td data-role>' + _userTable[i].type + '</td>' +
                 '<td>' + _userTable[i].created + '</td>' +
@@ -75,18 +77,26 @@ var Admin = (function(){
         // update data on storage
         localStorage.keabookUsers = JSON.stringify(_userTable, null, ' ');
     };
+
     var _updateUser = function(userID, data) {
 
-        // todo: replace user data with input fields
-        console.log(data);
+        var i = 0;
 
-        // todo: validate popup data
+        // todo: validate data and email unique
 
-        // todo: toggle save button
+        // update localStorage
+        for(; i < _userTable.length; i++){
 
-        // todo: update localStorage
+            if (_userTable[i].id == userID){
 
-        //_saveUserData();
+                _userTable[i].name = data.name ? data.name : _userTable[i].name;
+                _userTable[i].surname = data.surname ? data.surname : _userTable[i].surname;
+                _userTable[i].email = data.email ? data.email : _userTable[i].email;
+                _userTable[i].type = data.role ? data.role : _userTable[i].type;
+            }
+        }
+
+        localStorage.keabookUsers = JSON.stringify(_userTable, null, ' ');
     };
 
     var _assignAdminActions = function(tableEl) {
@@ -118,14 +128,62 @@ var Admin = (function(){
             currentBtn.find('span').toggleClass('fa-microphone');
         });
 
-        // delete user action
+        // edit user action
         tableEl.find('[data-edituser]').click(function() {
 
             var currentBtn = $(this),
                 userToEdit = currentBtn.data('edituser');
 
+            // toggle edit users mode
+            _editUsersMode = _editUsersMode ? 0 : 1;
+
+            if(_editUsersMode){
+
+                var nameInput = '<input class="form-control input-sm" type="text" id="nameInputAdmin" placeholder="New name">';
+                var surnameInput = '<input class="form-control input-sm" type="text" id="surnameInputAdmin" placeholder="New surname">';
+                var emailInput = '<input class="form-control input-sm" type="email" id="emailInputAdmin" placeholder="New email">';
+                var roleInput = '<input class="form-control input-sm" type="number" id="roleInputAdmin">';
+                currentBtn.closest('tr').find('[data-name]').append(nameInput);
+                currentBtn.closest('tr').find('[data-surname]').append(surnameInput);
+                currentBtn.closest('tr').find('[data-email]').append(emailInput);
+                currentBtn.closest('tr').find('[data-role]').append(roleInput);
+
+            } else {
+
+                // prepare data if changed
+                var data = {
+                    name: $('#nameInputAdmin').val() || undefined,
+                    surname: $('#surnameInputAdmin').val() || undefined,
+                    email: $('#emailInputAdmin').val() || undefined,
+                    role: $('#roleInputAdmin').val() || undefined
+                };
+
+                if($('#nameInputAdmin').val().length) {
+
+                    currentBtn.closest('tr').find('[data-name]').html($('#nameInputAdmin').val());
+                }
+                if($('#surnameInputAdmin').val().length) {
+
+                    currentBtn.closest('tr').find('[data-surname]').html($('#surnameInputAdmin').val());
+                }
+                if($('#emailInputAdmin').val().length) {
+
+                    currentBtn.closest('tr').find('[data-email]').html($('#emailInputAdmin').val());
+                }
+                if($('#roleInputAdmin').val().length) {
+
+                    currentBtn.closest('tr').find('[data-role]').html($('#roleInputAdmin').val());
+                }
 
 
+                // remove input fields when saving data
+                $('#nameInputAdmin').remove();
+                $('#surnameInputAdmin').remove();
+                $('#emailInputAdmin').remove();
+                $('#roleInputAdmin').remove();
+
+                _updateUser(userToEdit, data);
+            }
 
             // toggle icon for user blocking button based on current class
             currentBtn.find('span').toggleClass('fa-pencil');
