@@ -41,7 +41,8 @@ Misc.
 - todo: tooltips in admin panel
 - todo: replace colors for bootstrap alerts
 - todo: add gravatars to admin panel user list
-- todo: refactor admin module
+- todo: refactor admin, navigator modules
+- todo: anonymous image picture if no gravatar found
 
 Maybe:
 - todo: load admin script only if user is admin

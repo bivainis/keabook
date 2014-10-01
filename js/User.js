@@ -5,6 +5,10 @@ var User = (function(){
 
     var _userTable;
 
+    var _getData = function(){
+
+        return localStorage.keabookUsers ? JSON.parse(localStorage.keabookUsers) : [];
+    };
     var _userExists = function (data, email) {
         var i = 0,
             email = email,
@@ -49,7 +53,7 @@ var User = (function(){
     var make = function(formData) {
 
         // check if there are any users in local storage
-        _userTable = localStorage.keabookUsers ? JSON.parse(localStorage.keabookUsers) : [];
+        _userTable = _getData();
 
         // check if email already exists
         if(_userExists(_userTable, formData.email)){
@@ -78,7 +82,26 @@ var User = (function(){
         // todo: inform about success
     };
 
+    var showProfile = function () {
+
+        var i = 0,
+            profileData;
+
+        _userTable = _getData();
+
+        for(; i < _userTable.length; i++) {
+
+            if (_userTable[i].loggedIn == true){
+
+                profileUsername = _userTable[i].name;
+
+                $('#profileInfo')
+                    .find('[data-profileuser]').text();
+            }
+        }
+    };
     return {
-        make : make
+        make : make,
+        showProfile : showProfile
     };
 }());

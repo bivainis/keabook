@@ -45,6 +45,12 @@ var Navigator = (function(){
 
                 Admin.listUsers();
             }
+
+            // show profile of currently logged in user
+            if(partialName == 'profile'){
+
+                User.showProfile();
+            }
         } else {
 
             $.ajax({
@@ -63,6 +69,11 @@ var Navigator = (function(){
                     if(partialName == 'adminpanel'){
 
                         Admin.listUsers();
+                    }
+                    // show profile of currently logged in user
+                    if(partialName == 'profile'){
+
+                        User.showProfile();
                     }
                 }
             });
