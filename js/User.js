@@ -85,7 +85,7 @@ var User = (function(){
     var showProfile = function () {
 
         var i = 0,
-            profileData;
+            profileEl = $('#profileInfo');
 
         _userTable = _getData();
 
@@ -93,10 +93,13 @@ var User = (function(){
 
             if (_userTable[i].loggedIn == true){
 
-                profileUsername = _userTable[i].name;
+                //var profileUsername = _userTable[i].name;
 
-                $('#profileInfo')
-                    .find('[data-profileuser]').text();
+                profileEl.find('[data-profileuser]').text(_userTable[i].name + ' profile');
+                profileEl.find('[data-profilename]').text(_userTable[i].name + ' ' + _userTable[i].surname);
+                profileEl.find('[data-profileemail]').text('Email:  ' + _userTable[i].email);
+                profileEl.find('[data-profilesince]').text('Member since:  ' + _userTable[i].createdAt);
+                profileEl.find('[data-profilelastupdate]').text('Last update:  ' + _userTable[i].updatedAt);
             }
         }
     };
