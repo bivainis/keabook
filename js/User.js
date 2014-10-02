@@ -43,10 +43,9 @@ var User = (function(){
     };
     var _getGravatar = function (email) {
 
-        var hash;
-        // todo: hash email with md5
-
-
+        // hash email with md5
+        var hash = CryptoJS.MD5(email);
+        console.log(hash.toString());
         return hash;
     };
 
@@ -64,8 +63,8 @@ var User = (function(){
 
         _userTable.push({
             "id" : _generateUserId(_userTable),
-            //"name" : undefined,
-            //"surname" : undefined,
+            "name" : '(update your name)',
+            "surname" : '(update your surname)',
             "email" : formData.email,
             "password" : formData.password,
             "loggedIn" : false, // default
@@ -86,16 +85,16 @@ var User = (function(){
 
         var i = 0,
             profileEl = $('#profileInfo'),
-            userIndex, userName, userSurname, userEmail, userCreatedAt, userUpdatedAt;
+            userIndex, userImg, userName, userSurname, userEmail, userCreatedAt, userUpdatedAt;
 
         _userTable = _getData();
 
         for(; i < _userTable.length; i++) {
 
-
             if (_userTable[i].loggedIn == true){
 
                 userIndex = i;
+                userImg = 'http://1.gravatar.com/avatar/' + _userTable[i].gravatar + '?size=400px';
                 userName = _userTable[i].name;
                 userSurname = _userTable[i].surname;
                 userEmail = _userTable[i].email;
@@ -105,7 +104,8 @@ var User = (function(){
         }
 
         // update profile fields with user data
-        profileEl.find('[data-profileuser]').text(userName + ' profile');
+        profileEl.find('[data-profileuser]').text(userEmail);
+        profileEl.find('[data-profilepic]').attr('src', userImg);
         profileEl.find('[data-profilename]').text(userName + ' ' + userSurname);
         profileEl.find('[data-profileemail]').text(userEmail);
         profileEl.find('[data-profilesince]').text('Member since: ' + userCreatedAt);

@@ -12,14 +12,15 @@ Member can:
 - Navigate through pages
 - If user is blocked, don't allow login
 - View his/her profile
+- Edit profile information
 - todo: have a gravatar image || default image
-- todo: Edit profile information
 - todo: Create posts.
 - todo: Comment posts.
 - todo: Delete posts.
 - todo: See other users and posts.
 - todo: Send messages.
 - maybe: view other's profiles
+- maybe: user can be linked to gravatar to update his picture
 
 Admin can:
 - Access admin page.
@@ -34,7 +35,6 @@ Admin can:
 Technical Specs. The program must:
 • Be single page
 • Use Localstorage
-• todo: Use Gravatars based on user email,
 • todo: Use Geolocation
 
 Misc.
