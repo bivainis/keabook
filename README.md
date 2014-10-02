@@ -11,7 +11,8 @@ Guest can:
 Member can:
 - Navigate through pages
 - If user is blocked, don't allow login
-- todo: view profile
+- View his/her profile
+- todo: have a gravatar image || default image
 - todo: Edit profile information
 - todo: Create posts.
 - todo: Comment posts.
@@ -47,3 +48,4 @@ Misc.
 Maybe:
 - todo: load admin script only if user is admin
 - todo: smoother ux - animations and fades
+- todo: return last viewed page if page is refreshed

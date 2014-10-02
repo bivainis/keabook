@@ -91,18 +91,60 @@ var User = (function(){
 
         for(; i < _userTable.length; i++) {
 
+                        console.log(i);
             if (_userTable[i].loggedIn == true){
+                        console.log(i);
 
-                //var profileUsername = _userTable[i].name;
+                var userName = _userTable[i].name;
+                var userSurname = _userTable[i].surname;
+                var userEmail = _userTable[i].email;
+                var userCreatedAt = _userTable[i].createdAt;
+                var userUpdatedAt = _userTable[i].updatedAt;
 
-                profileEl.find('[data-profileuser]').text(_userTable[i].name + ' profile');
-                profileEl.find('[data-profilename]').text(_userTable[i].name + ' ' + _userTable[i].surname);
-                profileEl.find('[data-profileemail]').text('Email:  ' + _userTable[i].email);
-                profileEl.find('[data-profilesince]').text('Member since:  ' + _userTable[i].createdAt);
-                profileEl.find('[data-profilelastupdate]').text('Last update:  ' + _userTable[i].updatedAt);
+                // update profile fields with user data
+                profileEl.find('[data-profileuser]').text(userName + ' profile');
+                profileEl.find('[data-profilename]').text(userName + ' ' + userSurname);
+                profileEl.find('[data-profileemail]').text(userEmail);
+                profileEl.find('[data-profilesince]').text('Member since: ' + userCreatedAt);
+                profileEl.find('[data-profilelastupdate]').text('Last update: ' + userUpdatedAt);
+
+                profileEl.on('click', '.fa-pencil', function(){
+
+                    var parentEl = $(this).parent();
+                    var input = parentEl.find('input');
+
+                    // set input value to the current user's data
+                    if(parentEl.find('span').data('profilename') != undefined){
+
+                        input.first().val(userName);
+                        input.last().val(userSurname);
+                    } else {
+
+                        input.val(parentEl.find('span').text());
+                    }
+
+                    // handle element showing
+                    input.show();
+                    parentEl.find('.fa-save').show();
+                    $(this).hide();
+                });
+
+                profileEl.on('click', '.fa-save', function(){
+
+                    var parentEl = $(this).parent();
+                    var input = parentEl.find('input');
+
+                    console.log(input.val());
+
+                    // handle element showing
+                    input.hide();
+                    parentEl.find('.fa-pencil').show();
+                    $(this).hide();
+                });
             }
         }
     };
+
     return {
         make : make,
         showProfile : showProfile

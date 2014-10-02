@@ -78,3 +78,12 @@ main > .container {
 form > button {
   margin-top:1em;
 }
+
+#profileInfo {
+  .fa-pencil, .fa-save {
+    cursor : pointer;
+  }
+  input, .fa-save {
+    display: none;
+  }
+}

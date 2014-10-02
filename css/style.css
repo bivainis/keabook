@@ -110,4 +110,9 @@ main > .container {
 form > button {
   margin-top: 1em; }
 
+#profileInfo .fa-pencil, #profileInfo .fa-save {
+  cursor: pointer; }
+#profileInfo input, #profileInfo .fa-save {
+  display: none; }
+
 /*# sourceMappingURL=style.css.map */
