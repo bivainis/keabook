@@ -32,6 +32,30 @@ var Message = (function(){
         return User.getCurrentUser();
     };
 
+    var list = function(){
+
+        var i= 0,
+            messages = '';
+
+        _messageTable = _getData();
+
+
+        for(; i < _messageTable.length; i++){
+
+            // if sender or receiver is current user,
+            // append messages to list
+            if(_messageTable[i].senderId == _getSenderId() || _messageTable[i].receiverId == _getSenderId()){
+
+                messages += '<li>' +
+                    '<p>From: ' + User.getFullName(_messageTable[i].senderId) +  '</p>'+
+
+                    _messageTable[i].body +
+                '</li>';
+
+            }
+        }
+        $(messages).appendTo('[data-messagecontainer]');
+    };
     var send = function(msg, receiverID){
 
         _messageTable = _getData();
@@ -53,6 +77,7 @@ var Message = (function(){
     };
 
     return {
-        send : send
+        send : send,
+        list : list
     };
 }());

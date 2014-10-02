@@ -49,7 +49,11 @@ var Navigator = (function(){
             // show profile of currently logged in user
             if(partialName == 'profile'){
 
-                User.showProfile();
+                User.showProfile(User.getCurrentUser());
+            }
+            if(partialName == 'messages'){
+
+                Message.list();
             }
         } else {
 
@@ -73,7 +77,12 @@ var Navigator = (function(){
                     // show profile of currently logged in user
                     if(partialName == 'profile'){
 
-                        User.showProfile();
+                        User.showProfile(User.getCurrentUser());
+                    }
+
+                    if(partialName == 'messages'){
+
+                        Message.list();
                     }
                 }
             });

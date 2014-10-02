@@ -25,6 +25,21 @@ var User = (function(){
         }
         return currentUser;
     };
+
+    var getFullName = function(userId) {
+        console.log(userId);
+        var i = 0;
+
+        _userTable = _getData();
+
+        for(; i < _userTable.length; i++) {
+
+            if(_userTable[i].id == userId){
+
+                return _userTable[i].name + ' ' + _userTable[i].surname;
+            }
+        }
+    };
     var _userExists = function (data, email) {
         var i = 0,
             email = email,
@@ -96,20 +111,20 @@ var User = (function(){
         // todo: inform about success
     };
 
-    var showProfile = function () {
+    var showProfile = function(userID) {
 
         var i = 0,
             profileEl = $('#profileInfo'),
-            userIndex, userID, userImg, userName, userSurname, userEmail, userCreatedAt, userUpdatedAt;
+            userIndex, userImg, userName, userSurname, userEmail, userCreatedAt, userUpdatedAt;
 
         _userTable = _getData();
 
         for(; i < _userTable.length; i++) {
 
-            if (_userTable[i].loggedIn == true){
+            if (_userTable[i].id == userID){
 
                 userIndex = i;
-                userID = _userTable[i].id;
+                //userID = _userTable[i].id;
                 userImg = 'http://1.gravatar.com/avatar/' + _userTable[i].gravatar + '?size=400px';
                 userName = _userTable[i].name;
                 userSurname = _userTable[i].surname;
@@ -194,6 +209,7 @@ var User = (function(){
     return {
         make : make,
         showProfile : showProfile,
-        getCurrentUser : getCurrentUser
+        getCurrentUser : getCurrentUser,
+        getFullName : getFullName
     };
 }());
