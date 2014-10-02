@@ -85,64 +85,89 @@ var User = (function(){
     var showProfile = function () {
 
         var i = 0,
-            profileEl = $('#profileInfo');
+            profileEl = $('#profileInfo'),
+            userIndex, userName, userSurname, userEmail, userCreatedAt, userUpdatedAt;
 
         _userTable = _getData();
 
         for(; i < _userTable.length; i++) {
 
-                        console.log(i);
+
             if (_userTable[i].loggedIn == true){
-                        console.log(i);
 
-                var userName = _userTable[i].name;
-                var userSurname = _userTable[i].surname;
-                var userEmail = _userTable[i].email;
-                var userCreatedAt = _userTable[i].createdAt;
-                var userUpdatedAt = _userTable[i].updatedAt;
-
-                // update profile fields with user data
-                profileEl.find('[data-profileuser]').text(userName + ' profile');
-                profileEl.find('[data-profilename]').text(userName + ' ' + userSurname);
-                profileEl.find('[data-profileemail]').text(userEmail);
-                profileEl.find('[data-profilesince]').text('Member since: ' + userCreatedAt);
-                profileEl.find('[data-profilelastupdate]').text('Last update: ' + userUpdatedAt);
-
-                profileEl.on('click', '.fa-pencil', function(){
-
-                    var parentEl = $(this).parent();
-                    var input = parentEl.find('input');
-
-                    // set input value to the current user's data
-                    if(parentEl.find('span').data('profilename') != undefined){
-
-                        input.first().val(userName);
-                        input.last().val(userSurname);
-                    } else {
-
-                        input.val(parentEl.find('span').text());
-                    }
-
-                    // handle element showing
-                    input.show();
-                    parentEl.find('.fa-save').show();
-                    $(this).hide();
-                });
-
-                profileEl.on('click', '.fa-save', function(){
-
-                    var parentEl = $(this).parent();
-                    var input = parentEl.find('input');
-
-                    console.log(input.val());
-
-                    // handle element showing
-                    input.hide();
-                    parentEl.find('.fa-pencil').show();
-                    $(this).hide();
-                });
+                userIndex = i;
+                userName = _userTable[i].name;
+                userSurname = _userTable[i].surname;
+                userEmail = _userTable[i].email;
+                userCreatedAt = _userTable[i].createdAt;
+                userUpdatedAt = _userTable[i].updatedAt;
             }
         }
+
+        // update profile fields with user data
+        profileEl.find('[data-profileuser]').text(userName + ' profile');
+        profileEl.find('[data-profilename]').text(userName + ' ' + userSurname);
+        profileEl.find('[data-profileemail]').text(userEmail);
+        profileEl.find('[data-profilesince]').text('Member since: ' + userCreatedAt);
+        profileEl.find('[data-profilelastupdate]').text('Last update: ' + userUpdatedAt);
+
+        profileEl.on('click', '.fa-pencil', function(){
+
+            var parentEl = $(this).parent();
+            var input = parentEl.find('input');
+
+            // set input value to the current user's data
+            if(parentEl.find('span').data('profilename') != undefined){
+
+                input.first().val(userName);
+                input.last().val(userSurname);
+            } else {
+
+                input.val(parentEl.find('span').text());
+            }
+
+            // handle element showing
+            input.show();
+            parentEl.find('.fa-save').show();
+            $(this).hide();
+        });
+
+        profileEl.on('click', '.fa-save', function(){
+
+            var parentEl = $(this).parent();
+            var input = parentEl.find('input');
+            var inputVal = input.val();
+            var data = {
+                name : parentEl.find('[data-inputname]').val(),
+                surname : parentEl.find('[data-inputsurname]').val(),
+                email : parentEl.find('[data-inputemail]').val(),
+                password : parentEl.find('[data-inputpassword]').val()
+            };
+
+            // place new value in profile immediately upon saving
+            parentEl.find('[data-profilename]').text(data.name + ' ' + data.surname);
+            parentEl.find('[data-profileemail]').text(data.email);
+            parentEl.find('[data-profilepassword]').text(data.password);
+
+            _updateProfile(userIndex, data);
+
+            // handle element showing
+            input.hide();
+            parentEl.find('.fa-pencil').show();
+            $(this).hide();
+        });
+    };
+
+    var _updateProfile = function(userIndex, data){
+
+        // update table with new value or leave old one if doesn't exist
+        _userTable[userIndex].name = data.name ? data.name : _userTable[userIndex].name;
+        _userTable[userIndex].surname = data.surname ? data.surname : _userTable[userIndex].surname;
+        _userTable[userIndex].email = data.email ? data.email : _userTable[userIndex].email;
+        _userTable[userIndex].password = data.password ? data.password : _userTable[userIndex].password;
+
+        // save data
+        localStorage.keabookUsers = JSON.stringify(_userTable, null, ' ');
     };
 
     return {
