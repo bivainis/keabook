@@ -86,11 +86,15 @@ $(document).on('submit', 'form', function (e) {
 });
 $(document).on('click','[data-sendmessage]', function(){
 
-    Message.init();
-
+    // fadein message form
     $('.messageForm').fadeIn(200);
+
     $('[data-sendconfirm]').on('click', function() {
-        alert($(this).closest('.messageForm').find('[data-messagetext]').val());
+
+        // get message text
+        var msg = $(this).closest('.messageForm').find('[data-messagetext]').val();
+        // send message
+        Message.send(msg);
     });
 });
 
