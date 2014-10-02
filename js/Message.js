@@ -3,9 +3,8 @@
  */
 var Message = (function(){
 
-    var _messageTable,
-        _senderID,
-        _receiverID;
+    var _messageTable;
+
 
     var _getData = function(){
 
@@ -30,15 +29,10 @@ var Message = (function(){
 
     var _getSenderId = function() {
 
-        return 1;
+        return User.getCurrentUser();
     };
 
-    var _getReceiverId = function() {
-
-        return 2;
-    };
-
-    var send = function(msg){
+    var send = function(msg, receiverID){
 
         _messageTable = _getData();
 
@@ -46,7 +40,7 @@ var Message = (function(){
 
             "id" : _generateMessageId(_messageTable),
             "senderId" : _getSenderId(),
-            "receiverId" : _getReceiverId(),
+            "receiverId" : receiverID,
             "body" : msg,
             "location" : "{ geodata }",
             "sentAt" : "{ unix timestamp }"

@@ -90,11 +90,13 @@ $(document).on('click','[data-sendmessage]', function(){
     $('.messageForm').fadeIn(200);
 
     $('[data-sendconfirm]').on('click', function() {
-
+        console.log($(this));
         // get message text
         var msg = $(this).closest('.messageForm').find('[data-messagetext]').val();
-        // send message
-        Message.send(msg);
+        var receiverID = $(this).data('sendconfirm');
+
+        // send message to receiver
+        Message.send(msg, receiverID);
     });
 });
 

@@ -9,6 +9,22 @@ var User = (function(){
 
         return localStorage.keabookUsers ? JSON.parse(localStorage.keabookUsers) : [];
     };
+
+    var getCurrentUser = function () {
+
+        var i = 0,
+            currentUser;
+
+        _userTable = _getData();
+
+        for(; i < _userTable.length; i++){
+
+            if(_userTable[i].loggedIn){
+                currentUser = _userTable[i].id;
+            }
+        }
+        return currentUser;
+    };
     var _userExists = function (data, email) {
         var i = 0,
             email = email,
@@ -84,7 +100,7 @@ var User = (function(){
 
         var i = 0,
             profileEl = $('#profileInfo'),
-            userIndex, userImg, userName, userSurname, userEmail, userCreatedAt, userUpdatedAt;
+            userIndex, userID, userImg, userName, userSurname, userEmail, userCreatedAt, userUpdatedAt;
 
         _userTable = _getData();
 
@@ -93,6 +109,7 @@ var User = (function(){
             if (_userTable[i].loggedIn == true){
 
                 userIndex = i;
+                userID = _userTable[i].id;
                 userImg = 'http://1.gravatar.com/avatar/' + _userTable[i].gravatar + '?size=400px';
                 userName = _userTable[i].name;
                 userSurname = _userTable[i].surname;
@@ -109,6 +126,9 @@ var User = (function(){
         profileEl.find('[data-profileemail]').text(userEmail);
         profileEl.find('[data-profilesince]').text('Member since: ' + userCreatedAt);
         profileEl.find('[data-profilelastupdate]').text('Last update: ' + userUpdatedAt);
+
+        // attach profile user id to button to be used as recipient id upon sending
+        profileEl.find('[data-sendconfirm]').attr('data-sendconfirm', userID);
 
         profileEl.on('click', '.fa-pencil', function(){
 
@@ -155,6 +175,8 @@ var User = (function(){
             parentEl.find('.fa-pencil').show();
             $(this).hide();
         });
+
+        console.log('id' +userID);
     };
 
     var _updateProfile = function(userIndex, data){
@@ -171,6 +193,7 @@ var User = (function(){
 
     return {
         make : make,
-        showProfile : showProfile
+        showProfile : showProfile,
+        getCurrentUser : getCurrentUser
     };
 }());
