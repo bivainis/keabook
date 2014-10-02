@@ -18,7 +18,7 @@
 //
 // Navigator loads partials to view, if user is logged in
 //
-console.table(JSON.parse(localStorage.keabookUsers));
+//console.table(JSON.parse(localStorage.keabookMessages));
 $(document).on('click', '[data-open]', function () {
     var target = $(this).attr('data-open'),
         popup = $('.popup');
@@ -84,6 +84,16 @@ $(document).on('submit', 'form', function (e) {
         }
     }
 });
+$(document).on('click','[data-sendmessage]', function(){
+
+    Message.init();
+
+    $('.messageForm').fadeIn(200);
+    $('[data-sendconfirm]').on('click', function() {
+        alert($(this).closest('.messageForm').find('[data-messagetext]').val());
+    });
+});
+
 $(function() {
 
     var wHeight = window.innerHeight,
@@ -118,5 +128,4 @@ $(function() {
 
         Auth.logout();
     });
-
 });

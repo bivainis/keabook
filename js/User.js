@@ -45,7 +45,6 @@ var User = (function(){
 
         // hash email with md5
         var hash = CryptoJS.MD5(email);
-        console.log(hash.toString());
         return hash;
     };
 

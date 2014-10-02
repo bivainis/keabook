@@ -5,15 +5,15 @@ School assignment - KEA Book (school social network).
 Data is saved to local storage.
 
 Guest can:
-1. Log in, or create a new account
-2. See homepage
+- Log in, or create a new account
+- See homepage
 
 Member can:
 - Navigate through pages
 - If user is blocked, don't allow login
 - View his/her profile
 - Edit profile information
-- todo: have a gravatar image || default image
+- Have a gravatar image || default image = default gravatar
 - todo: Create posts.
 - todo: Comment posts.
 - todo: Delete posts.
@@ -21,6 +21,8 @@ Member can:
 - todo: Send messages.
 - maybe: view other's profiles
 - maybe: user can be linked to gravatar to update his picture
+- maybe: use Geolocation on posts and messages
+- maybe: delte messages
 
 Admin can:
 - Access admin page.
@@ -33,9 +35,8 @@ Admin can:
 - maybe: dropdown for user roles
 
 Technical Specs. The program must:
-• Be single page
-• Use Localstorage
-• todo: Use Geolocation
+- Singlepage
+- Use Localstorage
 
 Misc.
 - todo: write a function for storing data to local storage
