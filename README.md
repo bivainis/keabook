@@ -23,6 +23,7 @@ Member can:
 - maybe: user can be linked to gravatar to update his picture
 - maybe: use Geolocation on posts and messages
 - maybe: delte messages
+- maybe: have friends
 
 Admin can:
 - Access admin page.
@@ -30,6 +31,8 @@ Admin can:
 - Edit a user.
 - Delete a user.
 - Block a user.
+- See legend of admin panel
+- todo: link to user profile in _blank
 - maybe: sort users by blocked, admins, etc
 - maybe: admin cannot be blocked
 - maybe: dropdown for user roles

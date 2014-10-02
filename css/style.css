@@ -129,4 +129,14 @@ form > button {
     .messageForm textarea:focus:last-of-type {
       border: 1px solid #EA6045 !important; }
 
+.legend {
+  width: 15px;
+  height: 15px;
+  display: inline-block;
+  vertical-align: middle; }
+  .legend.legend-admin {
+    background: #F8CA4D; }
+  .legend.legend-banned {
+    background: #EA6045; }
+
 /*# sourceMappingURL=style.css.map */

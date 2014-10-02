@@ -106,3 +106,15 @@ form > button {
     }
   }
 }
+.legend {
+  width: 15px;
+  height: 15px;
+  display: inline-block;
+  vertical-align: middle;
+  &.legend-admin {
+    background: $yellow;
+  }
+  &.legend-banned {
+    background: $red;
+  }
+}
