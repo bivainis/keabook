@@ -63,6 +63,7 @@ var Navigator = (function(){
                 //async: false,
                 cache: false, // turn off cache so the views are always fresh (for development)
                 dataType: 'html',
+                contentType: 'text/html; charset=utf-8',
                 success : function(data){
 
                     _views[partialName] = data;
