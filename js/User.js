@@ -26,7 +26,29 @@ var User = (function(){
         }
         return currentUser;
     };
+    var fetch = function(userId){
 
+        var i = 0,
+            userData;
+
+        _userTable = _getData();
+
+        for(; i < _userTable.length; i++) {
+
+            if(_userTable[i].id == userId) {
+
+                userData = {
+                    id : _userTable[i].id,
+                    name : _userTable[i].name,
+                    surname : _userTable[i].surname,
+                    email : _userTable[i].email,
+                    gravatar : _userTable[i].gravatar
+                };
+            }
+        }
+
+        return userData;
+    };
     var getFullName = function(userId) {
         console.log(userId);
         var i = 0;
@@ -228,6 +250,7 @@ var User = (function(){
     return {
         make : make,
         showProfile : showProfile,
+        fetch : fetch,
         getCurrentUser : getCurrentUser,
         getFullName : getFullName
     };

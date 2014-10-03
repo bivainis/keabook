@@ -39,22 +39,34 @@ var Message = (function(){
 
         _messageTable = _getData();
 
+        if(_messageTable.length){
 
-        for(; i < _messageTable.length; i++){
+            // clear 'no messages' if there are messages
+            $('[data-messagecontainer]').empty();
 
-            // if sender or receiver is current user,
-            // append messages to list
-            if(_messageTable[i].senderId == _getSenderId() || _messageTable[i].receiverId == _getSenderId()){
+            for(; i < _messageTable.length; i++){
 
-                messages += '<li>' +
-                    '<p>From: ' + User.getFullName(_messageTable[i].senderId) +  '</p>'+
+                // if sender or receiver is current user,
+                // append messages to list
+                if(_messageTable[i].senderId == _getSenderId() || _messageTable[i].receiverId == _getSenderId()){
+
+                    // store user data into a var for easy access
+                    var user = User.fetch(_messageTable[i].senderId);
+
+                    messages += '<li>' +
+                    '<img class="pull-left" src="http://1.gravatar.com/avatar/' + user.gravatar + '?size=50px" alt="" width="50px" height="50px"/>' +
+
+                    '<p><strong>' + user.name + ' ' + user.surname +  '</strong><span> '+_messageTable[i].sentAt +'</span></p>'+
 
                     _messageTable[i].body +
-                '</li>';
 
+                    '</li>';
+
+                }
             }
+
+            $(messages).appendTo('[data-messagecontainer]');
         }
-        $(messages).appendTo('[data-messagecontainer]');
     };
     var send = function(msg, receiverID){
 
