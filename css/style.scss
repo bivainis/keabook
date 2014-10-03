@@ -122,4 +122,19 @@ textarea {
 .msgList {
   margin-top:10px;
 }
+.postContainer {
+  margin-top:10px;
+}
+.keabookUserList {
+  overflow:auto;
 
+  .keabookUserList {
+
+  }
+  .userListItem {
+    img {
+      float:left;
+      margin-right:10px;
+    }
+  }
+}

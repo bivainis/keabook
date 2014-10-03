@@ -122,8 +122,8 @@ var User = (function(){
 
         _userTable.push({
             "id" : _generateUserId(_userTable),
-            "name" : '(update your name)',
-            "surname" : '(update your surname)',
+            "name" : '(name not set)',
+            "surname" : '(surname not set)',
             "email" : formData.email,
             "password" : formData.password,
             "loggedIn" : false, // default

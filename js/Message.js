@@ -5,7 +5,6 @@ var Message = (function(){
 
     var _messageTable;
 
-
     var _getData = function(){
 
          return localStorage.keabookMessages ? JSON.parse(localStorage.keabookMessages) : [];
@@ -91,7 +90,6 @@ var Message = (function(){
             "sentAt" : date.toLocaleString('en-us', dateOptions)
         });
 
-        console.table(_messageTable);
         // last sender id
         var user = User.fetch(_messageTable[_messageTable.length -1].senderId);
         var message = '<li class="well well-sm">' +

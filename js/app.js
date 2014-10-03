@@ -104,6 +104,16 @@ $(document).on('click','[data-sendmessage]', function(){
     });
 });
 
+$(document).on('click','[data-publishpost]', function(){
+
+
+        // get message text
+        var msg = $(this).closest('.postForm').find('[data-posttext]').val();
+
+        // send message to receiver
+        Keabook.post(msg);
+});
+
 $(function() {
 
     var wHeight = window.innerHeight,
