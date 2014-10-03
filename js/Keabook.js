@@ -60,7 +60,6 @@ var Keabook = (function(){
         };
 
         _postTable = _getData();
-        console.table(_postTable);
         //
         _postTable.push({
         //
@@ -75,7 +74,6 @@ var Keabook = (function(){
 
         // last sender id
         var user = User.fetch(User.getCurrentUser());
-        console.log(user);
 
         var post = '<li class="well well-sm clearfix">' +
             '<div class="row"><div class="col-xs-2">'+
@@ -101,6 +99,7 @@ var Keabook = (function(){
             weekday: "long", year: "numeric", month: "short",
             day: "numeric", hour: "2-digit", minute: "2-digit"
         };
+        var user = User.fetch(User.getCurrentUser());
         _commentTable = _getCommentData();
 
         _commentTable.push({
@@ -113,17 +112,24 @@ var Keabook = (function(){
             "postedAt" : date.toLocaleString('en-us', dateOptions)
         });
 
-
+        var comment = '<li>hello</li>';
         // todo: append comment immediately
-       /* var user = User.fetch(User.getCurrentUser());
+       //var user = User.fetch(User.getCurrentUser());
+        //var i = 0;
 
-        var comment = '<li>' +
-            _commentTable[_commentTable[_messageTable.length -1]]].body +
-            '</li>';
 
+        if( _commentTable[_commentTable.length -1].postId = postId){
+
+            comment = '<li><strong>'
+            + user.name + ' ' + user.surname + '</strong>: ' + _commentTable[_commentTable.length -1].body +
+            '<p>' + _commentTable[_commentTable.length -1].postedAt + '</p></li>';
+            console.log(user.name);
+        }
+
+        var targetPost = $('[data-commentpost="' + postId+'"]').closest('.well');
         comment = $(comment);
-        ceoment.prependTo('[data-postcontainer]');
-*/
+        //comment.appendTo('[data-commentcontainer]');
+        targetPost.find('[data-commentcontainer]').append(comment);
         // store data
         localStorage.keabookComments = JSON.stringify(_commentTable, null, ' ');
     };
@@ -132,19 +138,17 @@ var Keabook = (function(){
             comment = '<ul data-commentcontainer>';
 
         _commentTable = _getCommentData();
-        console.log(_commentTable);
 
         if(_commentTable.length){
             for(; i < _commentTable.length; i++){
                 var cid = _commentTable[i].postId;
                 var cbody = _commentTable[i].body;
-
-
+                var usr = User.fetch(_commentTable[i].userId);
 
                 if(_commentTable[i].postId == postId){
 
 
-                    comment += '<li>' + cbody + '</li>';
+                    comment += '<li><strong>' + usr.name + ' ' + usr.surname + '</strong>: ' + cbody + '<p> '+ _commentTable[i].postedAt +'</p></li>';
                 }
             }
         }
@@ -182,7 +186,6 @@ var Keabook = (function(){
                     '</li>';
 
                 var comments = _getComments(_postTable[i].id);
-                console.log('adsf' + comments);
                 post = $(post);
                 post.prependTo('[data-postcontainer]');
                 $(post).append(comments);
