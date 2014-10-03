@@ -87,24 +87,25 @@ form > button {
     display: none;
   }
 }
+textarea {
+  margin-bottom:10px;
+  border-top: 1px solid #ccc !important;
+  border-bottom: 1px solid #ccc !important;
+  &:focus {
+    &:first-of-type {
+      border:1px solid $red !important;
+    }
+    &:last-of-type {
+      border:1px solid $red !important;
+    }
+  }
+}
 .profileButtons {
   margin-bottom: 10px;
 }
 .messageForm {
   display:none;
-  textarea {
-    margin-bottom:10px;
-    border-top: 1px solid #ccc !important;
-    border-bottom: 1px solid #ccc !important;
-    &:focus {
-      &:first-of-type {
-        border:1px solid $red !important;
-      }
-      &:last-of-type {
-        border:1px solid $red !important;
-      }
-    }
-  }
+
 }
 .legend {
   width: 15px;

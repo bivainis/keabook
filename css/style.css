@@ -115,19 +115,20 @@ form > button {
 #profileInfo input, #profileInfo .fa-save {
   display: none; }
 
+textarea {
+  margin-bottom: 10px;
+  border-top: 1px solid #ccc !important;
+  border-bottom: 1px solid #ccc !important; }
+  textarea:focus:first-of-type {
+    border: 1px solid #EA6045 !important; }
+  textarea:focus:last-of-type {
+    border: 1px solid #EA6045 !important; }
+
 .profileButtons {
   margin-bottom: 10px; }
 
 .messageForm {
   display: none; }
-  .messageForm textarea {
-    margin-bottom: 10px;
-    border-top: 1px solid #ccc !important;
-    border-bottom: 1px solid #ccc !important; }
-    .messageForm textarea:focus:first-of-type {
-      border: 1px solid #EA6045 !important; }
-    .messageForm textarea:focus:last-of-type {
-      border: 1px solid #EA6045 !important; }
 
 .legend {
   width: 15px;

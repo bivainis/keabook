@@ -109,9 +109,6 @@ $(function() {
     var wHeight = window.innerHeight,
         navHeight = $('.navbar-header').height() + 1; // +1px to account for border
 
-
-
-
     $('main').height(wHeight - navHeight);
 
     // load keabook if logged in

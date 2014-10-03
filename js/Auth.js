@@ -42,6 +42,7 @@ var Auth = (function(){
 
             // redirect to home
             Navigator.loadView('home');
+            $('main').height($(window).height);
         } else {
 
             alert('You are not logged in');

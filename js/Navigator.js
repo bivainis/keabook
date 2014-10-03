@@ -46,6 +46,12 @@ var Navigator = (function(){
 
                 partialName = 'keabook';
                 url = '_partials/' + partialName + '.html';
+
+                // render all posts
+                Keabook.getUsers();
+
+                $('main').height('auto');
+
             }
         }
 

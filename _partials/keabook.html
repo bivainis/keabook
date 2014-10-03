@@ -2,12 +2,25 @@
     <div class="row">
         <div class="col-xs-12">
             <h1>Keabook</h1>
+
             <div class="row">
                 <div class="col-sm-8">
-                    posts
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="postForm clearfix">
+                                <textarea data-posttext class="form-control" placeholder="Write something new"></textarea>
+                                <button data-publishpost class="pull-right btn btn-primary">
+                                    <i class="fa fa-space-shuttle fa-fw"></i>
+                                    Publish
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-sm-4">
-                    userlist
+                    <ul class="keabookUserList" data-keabookusers>
+
+                    </ul>
                 </div>
             </div>
         </div>
