@@ -70,6 +70,12 @@ var Message = (function(){
     };
     var send = function(msg, receiverID){
 
+        var date = new Date();
+        var dateOptions = {
+            weekday: "long", year: "numeric", month: "short",
+            day: "numeric", hour: "2-digit", minute: "2-digit"
+        };
+console.log();
         _messageTable = _getData();
 
         _messageTable.push({
@@ -79,11 +85,11 @@ var Message = (function(){
             "receiverId" : receiverID,
             "body" : msg,
             "location" : "{ geodata }",
-            "sentAt" : "{ unix timestamp }"
+            "sentAt" : date.toLocaleString('en-us', dateOptions)
         });
 
         console.table(_messageTable);
-        console.log(msg);
+
 
         localStorage.keabookMessages = JSON.stringify(_messageTable, null, ' ');
     };
