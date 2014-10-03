@@ -47,11 +47,7 @@ var Navigator = (function(){
                 partialName = 'keabook';
                 url = '_partials/' + partialName + '.html';
 
-                // render all posts
-                Keabook.getUsers();
-
                 $('main').height('auto');
-
             }
         }
 
@@ -63,6 +59,11 @@ var Navigator = (function(){
             if(partialName == 'adminpanel'){
 
                 Admin.listUsers();
+            }
+
+            if(partialName == 'keabook'){
+
+                Keabook.init();
             }
 
             // show profile of currently logged in user
@@ -94,6 +95,12 @@ var Navigator = (function(){
 
                         Admin.listUsers();
                     }
+
+                    if(partialName == 'keabook'){
+
+                        Keabook.init();
+                    }
+
                     // show profile of currently logged in user
                     if(partialName == 'profile'){
 

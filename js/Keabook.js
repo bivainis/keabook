@@ -2,8 +2,8 @@ var Keabook = (function(){
 
     var _userTable;
 
-    var getUsers = function() {
-/*
+    var _getUsers = function() {
+
         var i = 0,
             listEl = $('[data-keabookusers]'),
             userData = '';
@@ -20,16 +20,18 @@ var Keabook = (function(){
             '<div data-surname>' + _userTable[i].surname + '</div>' +
             '</li>';
         }
-        listEl.append(userData);*/
+        listEl.append(userData);
     };
+    var test = function () {
 
+    };
     var init = function(){
 
-        //_getUsers();
+        _getUsers();
     };
 
     return {
         init : init,
-        getUsers : getUsers
+        test : test
     };
 }());
