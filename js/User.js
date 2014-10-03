@@ -99,7 +99,9 @@ var User = (function(){
 
         // hash email with md5
         var hash = CryptoJS.MD5(email);
-        return hash;
+        console.log(hash);
+        console.log(hash.toString());
+        return hash.toString();
     };
 
     var make = function(formData) {

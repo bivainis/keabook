@@ -43,6 +43,9 @@ a {
   background-color: #EA6045;
   border-color: #adadad; }
 
+.well {
+  background-color: #e7ecf0; }
+
 html, body {
   height: 100%; }
 

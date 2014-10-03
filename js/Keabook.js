@@ -1,11 +1,17 @@
 var Keabook = (function(){
 
     var _userTable,
-        _postTable;
+        _postTable,
+        _commentTable;
 
     var _getData = function(){
 
         return localStorage.keabookPosts ? JSON.parse(localStorage.keabookPosts) : [];
+    };
+
+    var _getCommentData = function(){
+
+        return localStorage.keabookComments ? JSON.parse(localStorage.keabookComments) : [];
     };
 
     var _generatePostId = function (data) {
@@ -66,13 +72,12 @@ var Keabook = (function(){
             "postedAt" : date.toLocaleString('en-us', dateOptions),
             "updatedAt" : 0
         });
-        console.log(_postTable);
 
         // last sender id
         var user = User.fetch(User.getCurrentUser());
         console.log(user);
 
-        var post = '<li class="well well-sm">' +
+        var post = '<li class="well well-sm clearfix">' +
             '<div class="row"><div class="col-xs-2">'+
             '<img class="pull-left" src="http://1.gravatar.com/avatar/' +
             user.gravatar +
@@ -80,27 +85,117 @@ var Keabook = (function(){
             '</div><div class="col-xs-10">'+
             '<p><strong>'+ user.name + ' ' + user.surname + '</strong> on <small>' + _postTable[_postTable.length -1].postedAt  + '</small></p>'+
             '<p>'+ msg + '</p>'+
-            '</div></div>' +
+            '</div></div><button class="btn btn-default pull-right" data-commentpost="' + _postTable[_postTable.length -1].id + '">Comment</button>' +
             '</li>';
 
-        $(post).prependTo('[data-postcontainer]');
-        //
-        //localStorage.keabookMessages = JSON.stringify(_messageTable, null, ' ');
-    };
-    var comment = function () {
+        post = $(post);
+        post.prependTo('[data-postcontainer]');
 
+        // store data
+        localStorage.keabookPosts = JSON.stringify(_postTable, null, ' ');
+    };
+    var comment = function (msg, postId) {
+
+        var date = new Date();
+        var dateOptions = {
+            weekday: "long", year: "numeric", month: "short",
+            day: "numeric", hour: "2-digit", minute: "2-digit"
+        };
+        _commentTable = _getCommentData();
+
+        _commentTable.push({
+            //
+            "id" : _generatePostId(_postTable),
+            "userId" : User.getCurrentUser(),
+            "postId" : postId,
+            "body" : msg,
+            "location" : "{ geodata }",
+            "postedAt" : date.toLocaleString('en-us', dateOptions)
+        });
+
+
+        // todo: append comment immediately
+       /* var user = User.fetch(User.getCurrentUser());
+
+        var comment = '<li>' +
+            _commentTable[_commentTable[_messageTable.length -1]]].body +
+            '</li>';
+
+        comment = $(comment);
+        ceoment.prependTo('[data-postcontainer]');
+*/
+        // store data
+        localStorage.keabookComments = JSON.stringify(_commentTable, null, ' ');
+    };
+    var _getComments = function(postId){
+        var i= 0,
+            comment = '<ul data-commentcontainer>';
+
+        _commentTable = _getCommentData();
+        console.log(_commentTable);
+
+        if(_commentTable.length){
+            for(; i < _commentTable.length; i++){
+                var cid = _commentTable[i].postId;
+                var cbody = _commentTable[i].body;
+
+
+
+                if(_commentTable[i].postId == postId){
+
+
+                    comment += '<li>' + cbody + '</li>';
+                }
+            }
+        }
+
+        comment += '</ul>';
+        return comment;
     };
     var _getPosts = function(){
 
+        var i= 0,
+            post;
 
+        _postTable = _getData();
+
+        if(_postTable.length){
+
+            // clear 'no posts' if there are posts
+            $('[data-postcontainer]').empty();
+
+            for(; i < _postTable.length; i++){
+
+                // generate posts
+                // store user data into a var for easy access
+                var user = User.fetch(_postTable[i].userId);
+
+                var post = '<li class="well well-sm clearfix">' +
+                    '<div class="row"><div class="col-xs-2">'+
+                    '<img class="pull-left" src="http://1.gravatar.com/avatar/' +
+                    user.gravatar +
+                    '?size=50px" alt="" width="50px" height="50px" alt="Profile picture" class="img-rounded img-responsive" />' +
+                    '</div><div class="col-xs-10">'+
+                    '<p><strong>'+ user.name + ' ' + user.surname + '</strong> on <small>' + _postTable[i].postedAt  + '</small></p>'+
+                    '<p>'+ _postTable[i].body + '</p>'+
+                    '</div></div><button class="btn btn-default pull-right" data-commentpost="' + _postTable[i].id + '">Comment</button>' +
+                    '</li>';
+
+                var comments = _getComments(_postTable[i].id);
+                console.log('adsf' + comments);
+                post = $(post);
+                post.prependTo('[data-postcontainer]');
+                $(post).append(comments);
+            }
+
+            $('[data-commentpost]').attr('data-sendconfirm', user.id);
+        }
     };
-    var _getComments = function(){
 
-
-    };
     var init = function(){
 
         _getUsers();
+        _getPosts();
     };
 
     return {

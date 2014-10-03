@@ -44,3 +44,6 @@ a {
   background-color: $red;
   border-color: #adadad;
 }
+.well {
+  background-color: lighten($lightBlue,60%);
+}

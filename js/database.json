@@ -33,8 +33,7 @@
             "postId" : 1,
             "body" : "Great post, yo!",
             "location" : "{ geo data }",
-            "postedAt" : "{ unix timestamp }",
-            "updatedAt" : "{ unix timestamp }"
+            "postedAt" : "{ unix timestamp }"
         }
     ],
     "messages" : [

@@ -104,6 +104,22 @@ $(document).on('click','[data-sendmessage]', function(){
     });
 });
 
+$(document).on('click','[data-commentpost]', function(){
+
+    // fadein message form
+    var box = '<textarea data-commenttext class="form-control" placeholder="Comment"></textarea>';
+    var btn = '<button data-commentsave class="pull-right btn btn-primary"><i class="fa fa-beer fa-fw"></i>Comment</button>';
+    var postId = $(this).data('commentpost');
+
+    $(this).parent().append($(box), $(btn));
+    $(this).parent().find('[data-commentsave]').click(function(){
+        var msg = $(this).parent().find('[data-commenttext]').val();
+        console.log(msg);
+        Keabook.comment(msg, postId);
+    });
+
+});
+
 $(document).on('click','[data-publishpost]', function(){
 
 
@@ -113,6 +129,7 @@ $(document).on('click','[data-publishpost]', function(){
         // send message to receiver
         Keabook.post(msg);
 });
+
 
 $(function() {
 
