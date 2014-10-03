@@ -113,23 +113,21 @@ $(document).on('click','[data-commentpost]', function(){
 
     $(this).parent().append($(box), $(btn));
     $(this).parent().find('[data-commentsave]').click(function(){
+
         var msg = $(this).parent().find('[data-commenttext]').val();
-        console.log(msg);
+
         Keabook.comment(msg, postId);
     });
-
 });
 
 $(document).on('click','[data-publishpost]', function(){
 
+    // get message text
+    var msg = $(this).closest('.postForm').find('[data-posttext]').val();
 
-        // get message text
-        var msg = $(this).closest('.postForm').find('[data-posttext]').val();
-
-        // send message to receiver
-        Keabook.post(msg);
+    // send message to receiver
+    Keabook.post(msg);
 });
-
 
 $(function() {
 

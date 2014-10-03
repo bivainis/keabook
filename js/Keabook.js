@@ -84,6 +84,7 @@ var Keabook = (function(){
             '<p><strong>'+ user.name + ' ' + user.surname + '</strong> on <small>' + _postTable[_postTable.length -1].postedAt  + '</small></p>'+
             '<p>'+ msg + '</p>'+
             '</div></div><button class="btn btn-default pull-right" data-commentpost="' + _postTable[_postTable.length -1].id + '">Comment</button>' +
+            '<ul data-commentcontainer></ul>' +
             '</li>';
 
         post = $(post);
@@ -112,11 +113,7 @@ var Keabook = (function(){
             "postedAt" : date.toLocaleString('en-us', dateOptions)
         });
 
-        var comment = '<li>hello</li>';
-        // todo: append comment immediately
-       //var user = User.fetch(User.getCurrentUser());
-        //var i = 0;
-
+        var comment = '';
 
         if( _commentTable[_commentTable.length -1].postId = postId){
 
@@ -126,7 +123,8 @@ var Keabook = (function(){
             console.log(user.name);
         }
 
-        var targetPost = $('[data-commentpost="' + postId+'"]').closest('.well');
+        var targetPost = $('[data-commentpost="' + postId +'"]').closest('.well');
+        console.log(targetPost.find('[data-commentcontainer]'));
         comment = $(comment);
         //comment.appendTo('[data-commentcontainer]');
         targetPost.find('[data-commentcontainer]').append(comment);
@@ -135,7 +133,7 @@ var Keabook = (function(){
     };
     var _getComments = function(postId){
         var i= 0,
-            comment = '<ul data-commentcontainer>';
+            comment = '';
 
         _commentTable = _getCommentData();
 
@@ -147,13 +145,12 @@ var Keabook = (function(){
 
                 if(_commentTable[i].postId == postId){
 
-
                     comment += '<li><strong>' + usr.name + ' ' + usr.surname + '</strong>: ' + cbody + '<p> '+ _commentTable[i].postedAt +'</p></li>';
                 }
             }
         }
 
-        comment += '</ul>';
+        comment += '';
         return comment;
     };
     var _getPosts = function(){
@@ -183,12 +180,13 @@ var Keabook = (function(){
                     '<p><strong>'+ user.name + ' ' + user.surname + '</strong> on <small>' + _postTable[i].postedAt  + '</small></p>'+
                     '<p>'+ _postTable[i].body + '</p>'+
                     '</div></div><button class="btn btn-default pull-right" data-commentpost="' + _postTable[i].id + '">Comment</button>' +
+                    '<ul data-commentcontainer></ul>' +
                     '</li>';
 
                 var comments = _getComments(_postTable[i].id);
                 post = $(post);
                 post.prependTo('[data-postcontainer]');
-                $(post).append(comments);
+                $(post).find('[data-commentcontainer]').append(comments);
             }
 
             $('[data-commentpost]').attr('data-sendconfirm', user.id);
