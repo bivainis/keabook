@@ -82,6 +82,12 @@ var User = (function(){
 
     var make = function(formData) {
 
+        var date = new Date();
+        var dateOptions = {
+            weekday: "long", year: "numeric", month: "short",
+            day: "numeric", hour: "2-digit", minute: "2-digit"
+        };
+
         // check if there are any users in local storage
         _userTable = _getData();
 
@@ -103,7 +109,7 @@ var User = (function(){
             "rememberMe" : 0,
             "type" : 0, // 0 - regular, 1 - admin
             "gravatar" : _getGravatar(formData.email),
-            "createdAt" : Date.now(),
+            "createdAt" : date.toLocaleTimeString("en-us", dateOptions),
             "updatedAt" : "0"
         });
 
@@ -117,7 +123,11 @@ var User = (function(){
 
         var i = 0,
             profileEl = $('#profileInfo'),
-            userIndex, userImg, userName, userSurname, userEmail, userCreatedAt, userUpdatedAt;
+            userIndex, userImg, userName, userSurname, userEmail, userLastLoginAt, userCreatedAt, userUpdatedAt,
+            dateOptions = {
+                weekday: "long", year: "numeric", month: "short",
+                day: "numeric", hour: "2-digit", minute: "2-digit"
+            };
 
         _userTable = _getData();
 
@@ -131,8 +141,10 @@ var User = (function(){
                 userName = _userTable[i].name;
                 userSurname = _userTable[i].surname;
                 userEmail = _userTable[i].email;
+                userLastLoginAt = _userTable[i].lastLoginAt ? _userTable[i].lastLoginAt : 'never';
                 userCreatedAt = _userTable[i].createdAt;
-                userUpdatedAt = _userTable[i].updatedAt ? _userTable[i].updatedAt : 'never';
+                console.log(_userTable[i].updatedAt);
+                userUpdatedAt = _userTable[i].updatedAt == 0 ? 'never' : _userTable[i].updatedAt;
             }
         }
 
@@ -142,7 +154,8 @@ var User = (function(){
         profileEl.find('[data-profilename]').text(userName + ' ' + userSurname);
         profileEl.find('[data-profileemail]').text(userEmail);
         profileEl.find('[data-profilesince]').text('Member since: ' + userCreatedAt);
-        profileEl.find('[data-profilelastupdate]').text('Last update: ' + userUpdatedAt);
+        profileEl.find('[data-profilelastlogin]').text('Last login: ' + userLastLoginAt);
+        profileEl.find('[data-profilelastupdate]').text('Updated: ' + userUpdatedAt);
 
         // attach profile user id to button to be used as recipient id upon sending
         profileEl.find('[data-sendconfirm]').attr('data-sendconfirm', userID);
@@ -196,12 +209,17 @@ var User = (function(){
 
     var _updateProfile = function(userIndex, data){
 
+        var date = new Date();
+        var dateOptions = {
+            weekday: "long", year: "numeric", month: "short",
+            day: "numeric", hour: "2-digit", minute: "2-digit"
+        };
         // update table with new value or leave old one if doesn't exist
         _userTable[userIndex].name = data.name ? data.name : _userTable[userIndex].name;
         _userTable[userIndex].surname = data.surname ? data.surname : _userTable[userIndex].surname;
         _userTable[userIndex].email = data.email ? data.email : _userTable[userIndex].email;
         _userTable[userIndex].password = data.password ? data.password : _userTable[userIndex].password;
-        _userTable[userIndex].updatedAt = Date.now();
+        _userTable[userIndex].updatedAt = date.toLocaleString('en-us', dateOptions);
 
         // save data
         localStorage.keabookUsers = JSON.stringify(_userTable, null, ' ');

@@ -72,12 +72,20 @@ var Auth = (function(){
             if(_userTable[_currentUserIndex].password == pass && _userTable[_currentUserIndex].type != 6){
 
                 // passwords match, login
-                // todo: hash
                 message = 'Password matched, welcome';
 
                 // set loggedin to true
                 _userTable[_currentUserIndex].loggedIn = true;
 
+                // set last login time to now
+                var date = new Date();
+                var dateOptions = {
+                    weekday: "long", year: "numeric", month: "short",
+                    day: "numeric", hour: "2-digit", minute: "2-digit"
+                };
+                _userTable[_currentUserIndex].lastLoginAt = date.toLocaleTimeString("en-us", dateOptions);
+
+                // save data
                 localStorage.keabookUsers = JSON.stringify(_userTable, null, ' ');
 
             } else {
