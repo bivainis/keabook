@@ -55,7 +55,11 @@ $(document).on('submit', 'form', function (e) {
         // if validator returns true, create a new user
         if(Validator.check(fields)){
 
-            User.make(fields);
+            // create new user and send notification back to visitor
+            var notification = User.make(fields);
+            var notificationEl = '<p class="alert alert-success alert-dismissable">' + notification +'</p>';
+            $('.popup .actionButtons').prepend(notificationEl);
+
         }
     } else if (currentForm == 'loginForm'){
 
@@ -69,7 +73,7 @@ $(document).on('submit', 'form', function (e) {
 
             // login and retrieve notification message
             var notification = Auth.login(email, pass);
-            var notificationEl = '<p class="alert-warning alert-dismissable">' + notification +'</p>';
+            var notificationEl = '<p class="alert alert-warning alert-dismissable">' + notification +'</p>';
 
             $('.popup .actionButtons').prepend(notificationEl);
 

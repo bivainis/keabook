@@ -3,7 +3,8 @@
  */
 var User = (function(){
 
-    var _userTable;
+    var _userTable,
+        message; // to return user created success when signing up
 
     var _getData = function(){
 
@@ -102,13 +103,14 @@ var User = (function(){
             "rememberMe" : 0,
             "type" : 0, // 0 - regular, 1 - admin
             "gravatar" : _getGravatar(formData.email),
-            "createdAt" : "{ unix timestamp }",
-            "updatedAt" : "{ unix timestamp }"
+            "createdAt" : Date.now(),
+            "updatedAt" : "0"
         });
 
         localStorage.keabookUsers = JSON.stringify(_userTable, null, ' ');
 
         // todo: inform about success
+        return 'User created successfully, please log in to access Keabook.';
     };
 
     var showProfile = function(userID) {
@@ -130,7 +132,7 @@ var User = (function(){
                 userSurname = _userTable[i].surname;
                 userEmail = _userTable[i].email;
                 userCreatedAt = _userTable[i].createdAt;
-                userUpdatedAt = _userTable[i].updatedAt;
+                userUpdatedAt = _userTable[i].updatedAt ? _userTable[i].updatedAt : 'never';
             }
         }
 
@@ -190,8 +192,6 @@ var User = (function(){
             parentEl.find('.fa-pencil').show();
             $(this).hide();
         });
-
-        console.log('id' +userID);
     };
 
     var _updateProfile = function(userIndex, data){
@@ -201,6 +201,7 @@ var User = (function(){
         _userTable[userIndex].surname = data.surname ? data.surname : _userTable[userIndex].surname;
         _userTable[userIndex].email = data.email ? data.email : _userTable[userIndex].email;
         _userTable[userIndex].password = data.password ? data.password : _userTable[userIndex].password;
+        _userTable[userIndex].updatedAt = Date.now();
 
         // save data
         localStorage.keabookUsers = JSON.stringify(_userTable, null, ' ');
