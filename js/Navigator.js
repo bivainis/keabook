@@ -23,6 +23,7 @@ var Navigator = (function(){
             partialName = 'home';
             url = '_partials/' + partialName + '.html';
         }
+
         // when trying to access admin panel, check if user is admin,
         // redirect to home if not
         if(partialName == 'adminpanel'){
@@ -32,6 +33,18 @@ var Navigator = (function(){
             if(authData.isAdmin == 0){
 
                 partialName = 'home';
+                url = '_partials/' + partialName + '.html';
+            }
+        }
+
+        // if clicking on keabook logo, check if logged in and return keabook view
+        if(partialName == 'home'){
+
+            var authData = Auth.check();
+
+            if(authData.loggedIn == true){
+
+                partialName = 'keabook';
                 url = '_partials/' + partialName + '.html';
             }
         }

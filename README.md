@@ -14,11 +14,11 @@ Member can:
 - View his/her profile  
 - Edit profile information  
 - Have a gravatar image || default image = default gravatar  
+- Send messages.  
 - todo: Create posts.  
 - todo: Comment posts.  
 - todo: Delete posts.  
 - todo: See other users and posts.  
-- todo: Send messages.  
 - maybe: view other's profiles  
 - maybe: user can be linked to gravatar to update his picture  
 - maybe: use Geolocation on posts and messages  
