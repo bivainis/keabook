@@ -35,7 +35,7 @@ var Message = (function(){
     var list = function(){
 
         var i= 0,
-            messages = '';
+            message;
 
         _messageTable = _getData();
 
@@ -53,19 +53,22 @@ var Message = (function(){
                     // store user data into a var for easy access
                     var user = User.fetch(_messageTable[i].senderId);
 
-                    messages += '<li>' +
-                    '<img class="pull-left" src="http://1.gravatar.com/avatar/' + user.gravatar + '?size=50px" alt="" width="50px" height="50px"/>' +
-
-                    '<p><strong>' + user.name + ' ' + user.surname +  '</strong><span> '+_messageTable[i].sentAt +'</span></p>'+
-
-                    _messageTable[i].body +
-
+                    message = '<li class="well well-sm">' +
+                        '<div class="row"><div class="col-xs-2">'+
+                            '<img class="pull-left" src="http://1.gravatar.com/avatar/' +
+                                user.gravatar +
+                                '?size=50px" alt="" width="50px" height="50px" alt="Profile picture" class="img-rounded img-responsive" />' +
+                        '</div><div class="col-xs-10">'+
+                            '<p><strong>'+ user.name + ' ' + user.surname + '</strong> on <small>' + _messageTable[i].sentAt  + '</small></p>'+
+                            '<p>'+ _messageTable[i].body + '</p>'+
+                        '</div></div>' +
                     '</li>';
-
+                    $(message).prependTo('[data-messagecontainer]');
                 }
             }
 
-            $(messages).appendTo('[data-messagecontainer]');
+            //$(messages).appendTo('[data-messagecontainer]');
+            $('[data-sendconfirm]').attr('data-sendconfirm', user.id);
         }
     };
     var send = function(msg, receiverID){
@@ -75,7 +78,7 @@ var Message = (function(){
             weekday: "long", year: "numeric", month: "short",
             day: "numeric", hour: "2-digit", minute: "2-digit"
         };
-console.log();
+
         _messageTable = _getData();
 
         _messageTable.push({
@@ -89,7 +92,20 @@ console.log();
         });
 
         console.table(_messageTable);
+        // last sender id
+        var user = User.fetch(_messageTable[_messageTable.length -1].senderId);
+        var message = '<li class="well well-sm">' +
+        '<div class="row"><div class="col-xs-2">'+
+        '<img class="pull-left" src="http://1.gravatar.com/avatar/' +
+        user.gravatar +
+        '?size=50px" alt="" width="50px" height="50px" alt="Profile picture" class="img-rounded img-responsive" />' +
+        '</div><div class="col-xs-10">'+
+        '<p><strong>'+ user.name + ' ' + user.surname + '</strong> on <small>' + _messageTable[_messageTable.length -1].sentAt  + '</small></p>'+
+        '<p>'+ msg + '</p>'+
+        '</div></div>' +
+        '</li>';
 
+        $(message).prependTo('[data-messagecontainer]');
 
         localStorage.keabookMessages = JSON.stringify(_messageTable, null, ' ');
     };

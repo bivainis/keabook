@@ -1,11 +1,22 @@
 <div class="container">
     <div class="row">
-        <div class="col-xs-12">
-            <h1>Messages</h1>
-            <ul data-messagecontainer class="list-unstyled">
+        <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+            <h1>Messages
+                <button data-sendmessage class="sendMsgBtn btn btn-default">
+                    <i class="fa fa-envelope fa-fw"></i>
+                Create new
+                </button>
+            </h1>
+            <div class="messageForm clearfix">
+                <textarea data-messagetext class="form-control"></textarea>
+                <button data-sendconfirm class="pull-right btn btn-primary">
+                    <i class="fa fa-android fa-fw"></i>
+                    Send
+                </button>
+            </div>
+            <ul data-messagecontainer class="msgList list-unstyled">
                 <li>No new messages</li>
             </ul>
-
         </div>
     </div>
 </div>
