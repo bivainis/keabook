@@ -158,7 +158,9 @@ textarea {
   margin-bottom: 10px; }
 
 .messageForm {
-  display: none; }
+  display: none;
+  clear: both;
+  margin-top: 10px; }
 
 .legend {
   width: 15px;

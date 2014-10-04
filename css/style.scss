@@ -131,7 +131,8 @@ textarea {
 }
 .messageForm {
   display:none;
-
+  clear:both;
+  margin-top:10px;
 }
 .legend {
   width: 15px;

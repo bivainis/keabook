@@ -52,22 +52,34 @@ var Message = (function(){
                     // store user data into a var for easy access
                     var user = User.fetch(_messageTable[i].senderId);
 
-                    message = '<li class="well well-sm">' +
-                        '<div class="row"><div class="col-xs-2">'+
-                            '<img class="pull-left" src="http://1.gravatar.com/avatar/' +
-                                user.gravatar +
-                                '?size=50px" alt="" width="50px" height="50px" alt="Profile picture" class="img-rounded img-responsive" />' +
-                        '</div><div class="col-xs-10">'+
-                            '<p><strong>'+ user.name + ' ' + user.surname + '</strong> on <small>' + _messageTable[i].sentAt  + '</small></p>'+
-                            '<p>'+ _messageTable[i].body + '</p>'+
-                        '</div></div>' +
-                    '</li>';
+                    message =
+                        '<li class="well well-sm">' +
+                            '<div class="row">' +
+                                '<div class="col-xs-2">'+
+                                    '<img class="pull-left" src="http://1.gravatar.com/avatar/' +
+                                        user.gravatar +
+                                        '?size=50px" alt="" width="50px" height="50px" alt="Profile picture" class="img-rounded img-responsive" />' +
+                                '</div>' +
+                                '<div class="col-xs-10">'+
+                                    '<p>' +
+                                        '<strong>'+ user.name + ' ' + user.surname + '</strong> on <small>' + _messageTable[i].sentAt  + '</small>' +
+                                    '</p>'+
+                                    '<p>'+ _messageTable[i].body + '</p>'+
+                                    '<button class="btn btn-default pull-right" data-reply="' + _messageTable[i].senderId +'"><i class="fa fa-arrow-right fa-fw"></i> Reply</button>' +
+                                '</div>' +
+                            '</div>' +
+                            '<div class="messageForm clearfix">'+
+                                '<textarea data-messagetext class="form-control"></textarea>'+
+                                '<button data-sendconfirm class="pull-right btn btn-primary">'+
+                                    '<i class="fa fa-android fa-fw"></i> Send</button>'+
+                            '</div>' +
+                        '</li>';
                     $(message).prependTo('[data-messagecontainer]');
                 }
             }
 
             //$(messages).appendTo('[data-messagecontainer]');
-            $('[data-sendconfirm]').attr('data-sendconfirm', user.id);
+            //$('[data-sendconfirm]').attr('data-sendconfirm', user.id);
         }
     };
     var send = function(msg, receiverID){

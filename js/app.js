@@ -104,6 +104,24 @@ $(document).on('click','[data-sendmessage]', function(){
     });
 });
 
+$(document).on('click','[data-reply]', function(){
+
+    $(this).closest('li').find('.messageForm').fadeIn(200);
+
+    // fadein message form
+
+    $(this).closest('li').find('[data-sendconfirm]').on('click', function() {
+
+        // get message text
+        var msg = $(this).closest('.messageForm').find('[data-messagetext]').val();
+        var receiverID = $(this).data('sendconfirm');
+
+        // send message to receiver
+        Message.send(msg, receiverID);
+    });
+});
+
+
 $(document).on('click','[data-commentpost]', function(){
 
     // fadein message form
