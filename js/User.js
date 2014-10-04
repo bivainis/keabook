@@ -50,7 +50,7 @@ var User = (function(){
         return userData;
     };
     var getFullName = function(userId) {
-        console.log(userId);
+
         var i = 0;
 
         _userTable = _getData();
@@ -99,8 +99,7 @@ var User = (function(){
 
         // hash email with md5
         var hash = CryptoJS.MD5(email);
-        console.log(hash);
-        console.log(hash.toString());
+
         return hash.toString();
     };
 
@@ -167,7 +166,7 @@ var User = (function(){
                 userEmail = _userTable[i].email;
                 userLastLoginAt = _userTable[i].lastLoginAt ? _userTable[i].lastLoginAt : 'never';
                 userCreatedAt = _userTable[i].createdAt;
-                console.log(_userTable[i].updatedAt);
+
                 userUpdatedAt = _userTable[i].updatedAt == 0 ? 'never' : _userTable[i].updatedAt;
             }
         }

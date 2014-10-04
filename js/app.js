@@ -94,7 +94,7 @@ $(document).on('click','[data-sendmessage]', function(){
     $('.messageForm').fadeIn(200);
 
     $('[data-sendconfirm]').on('click', function() {
-        console.log($(this));
+
         // get message text
         var msg = $(this).closest('.messageForm').find('[data-messagetext]').val();
         var receiverID = $(this).data('sendconfirm');
@@ -127,6 +127,17 @@ $(document).on('click','[data-publishpost]', function(){
 
     // send message to receiver
     Keabook.post(msg);
+});
+
+$(document).on('click','[data-profileid]', function(){
+
+    // get message text
+
+    var profileId = $(this).data('profileid');
+    // send message to receiver
+
+
+    Navigator.loadView('profile', profileId);
 });
 
 $(function() {

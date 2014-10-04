@@ -67,9 +67,9 @@ var Keabook = (function(){
 
             userData += '<li class="userListItem list-unstyled clearfix">' +
             '<img class="img-thumbnail" src="http://1.gravatar.com/avatar/' + _userTable[i].gravatar + '?size=30px" alt="" width="40px" height="40px"/>' +
-            '<div data-email data-id="' + _userTable[i].id + '">' + _userTable[i].email + '</div>' +
-            '<div data-name><strong>' + _userTable[i].name + _userTable[i].surname + '</strong></div>' +
-            '<hr></li>';
+            '<div data-name><strong class="btn-link" data-profileid="' + _userTable[i].id + '">' + _userTable[i].name + _userTable[i].surname + '</strong></div>' +
+            '<div data-email>' + _userTable[i].email + '</div>' +
+            '</li>';
         }
         listEl.append(userData);
         listEl.height($(window).height() - 110);
@@ -108,7 +108,7 @@ var Keabook = (function(){
                             '<div class="col-xs-12">'+
                                 '<img class="img-thumbnail pull-left" src="http://1.gravatar.com/avatar/' +
                                     user.gravatar + '?size=50px" alt="" width="50px" height="50px" alt="Profile picture" class="img-rounded img-responsive" />' +
-                                '<p><strong>'+ user.name + ' ' + user.surname + '</strong> on <small>' + _postTable[i].postedAt  + '</small></p>'+
+                                '<p><strong class="btn-link" data-profileid="' + user.id + '">'+ user.name + ' ' + user.surname + '</strong> on <small>' + _postTable[i].postedAt  + '</small></p>'+
                                 '<p>'+ _postTable[i].body + '</p>'+
                             '</div>' +
                         '</div>' +
@@ -161,17 +161,24 @@ var Keabook = (function(){
         // last sender id
         var user = User.fetch(User.getCurrentUser());
 
-        var post = '<li class="well well-sm">' +
-            '<div class="row"><div class="col-xs-2">'+
+        var post =
+            '<li class="well well-sm">' +
+            '<div class="row">'+
+            '<div class="col-xs-12">'+
             '<img class="img-thumbnail pull-left" src="http://1.gravatar.com/avatar/' +
             user.gravatar +
             '?size=50px" alt="" width="50px" height="50px" alt="Profile picture" class="img-rounded img-responsive" />' +
-            '</div><div class="col-xs-10">'+
-            '<p><strong>'+ user.name + ' ' + user.surname + '</strong> on <small>' + _postTable[_postTable.length -1].postedAt  + '</small></p>'+
+            '<p><strong class="btn-link" data-profileid="' + user.id + '">'+ user.name + ' ' + user.surname + '</strong> on <small>' + _postTable[_postTable.length -1].postedAt  + '</small></p>'+
             '<p>'+ msg + '</p>'+
-            '</div></div><button class="btn btn-default pull-right" data-commentpost="' + _postTable[_postTable.length -1].id + '">Comment</button>' +
+            '</div>' +
+            '</div>' +
             '<div class="row">' +
-                '<ul class="list-unstyled commentContainer" data-commentcontainer></ul>' +
+            '<div class="col-xs-12">'+
+            '<button class="btn btn-default pull-right" data-commentpost="' + _postTable[_postTable.length -1].id + '">Comment</button>' +
+            '</div>' +
+            '</div>' +
+            '<div class="row">' +
+            '<ul class="list-unstyled commentContainer" data-commentcontainer></ul>' +
             '</div>' +
             '</li>';
 
@@ -198,7 +205,7 @@ var Keabook = (function(){
 
                     comment +=
                         '<li>' +
-                            '<strong>' +
+                            '<strong class="btn-link" data-profileid="' + usr.id + '">' +
                                 usr.name + ' ' + usr.surname +
                             '</strong>' +
                             '<small> on ' + _commentTable[i].postedAt + '</small>' +
@@ -240,7 +247,7 @@ var Keabook = (function(){
 
             comment =
                 '<li>' +
-                    '<strong>' +
+                    '<strong class="btn-link" data-profileid="' + user.id + '">' +
                         user.name + ' ' + user.surname +
                     '</strong>' +
                     '<small> on ' + _commentTable[_commentTable.length -1].postedAt + '</small>' +
@@ -251,7 +258,7 @@ var Keabook = (function(){
         }
 
         var targetPost = $('[data-commentpost="' + postId +'"]').closest('.well');
-        console.log(targetPost.find('[data-commentcontainer]'));
+
         comment = $(comment);
         //comment.appendTo('[data-commentcontainer]');
         targetPost.find('[data-commentcontainer]').append(comment);

@@ -5,7 +5,7 @@ var Navigator = (function(){
 
     var _views = {};
 
-    var loadView = function(partialName){
+    var loadView = function(partialName, profileId){
 
         // todo: if view is adminpanel, check if user type is 1
         // todo: check if current view is not target view
@@ -69,7 +69,12 @@ var Navigator = (function(){
             // show profile of currently logged in user
             if(partialName == 'profile'){
 
-                User.showProfile(User.getCurrentUser());
+                if(profileId){
+                    User.showProfile(profileId);
+                } else {
+
+                    User.showProfile(User.getCurrentUser());
+                }
             }
             if(partialName == 'messages'){
 
@@ -104,7 +109,12 @@ var Navigator = (function(){
                     // show profile of currently logged in user
                     if(partialName == 'profile'){
 
-                        User.showProfile(User.getCurrentUser());
+                        if(profileId){
+                            User.showProfile(profileId);
+                        } else {
+
+                            User.showProfile(User.getCurrentUser());
+                        }
                     }
 
                     if(partialName == 'messages'){
