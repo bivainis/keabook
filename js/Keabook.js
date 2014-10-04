@@ -44,10 +44,14 @@ var Keabook = (function(){
             '<img class="img-responsive img-thumbnail" src="' +
                 userImgSrc + '" alt="User image" />' +
             '<h3>' + currentUser.name + ' ' + currentUser.surname + '</h3>'+
-            '<button class="btn btn-default btn-sm">View profile</button>';
+            '<button class="viewProfile btn btn-default btn-sm">View profile</button>';
 
 
         userbar.html(userbarHtml);
+        $('.viewProfile').click(function () {
+
+            Navigator.loadView('profile');
+        });
     };
 
     var _getUsers = function() {

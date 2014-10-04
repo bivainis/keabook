@@ -32,7 +32,8 @@ Admin can:
 - Delete a user.  
 - Block a user.  
 - See legend of admin panel  
-- todo: link to user profile in _blank  
+- See gravatars in admin panel user list  
+- maybe: link to user profile in _blank  
 - maybe: sort users by blocked, admins, etc  
 - maybe: admin cannot be blocked  
 - maybe: dropdown for user roles  
@@ -42,10 +43,10 @@ Technical Specs. The program must:
 - Use Localstorage  
 
 Misc.  
-- todo: write a function for storing data to local storage  
+
 - todo: tooltips in admin panel  
 - todo: replace colors for bootstrap alerts  
-- todo: add gravatars to admin panel user list  
+ 
 - todo: refactor admin, navigator modules  
 - todo: anonymous image picture if no gravatar found  
 
