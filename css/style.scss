@@ -2,6 +2,29 @@
 @import "_sass/colors";
 @import "_sass/bootstrap_overrides";
 
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-button {
+  width: 8px;
+  height:5px;
+}
+::-webkit-scrollbar-track {
+  background:#eee;
+  border: thin solid lightgray;
+  box-shadow: 0px 0px 3px #dfdfdf inset;
+  border-radius:10px;
+}
+::-webkit-scrollbar-thumb {
+  background:#999;
+  border: thin solid gray;
+  border-radius:10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background:#7d7d7d;
+}
+
 html, body {
   height: 100%;
 }
@@ -9,6 +32,9 @@ body {
   background:white;
   color:$blue;
   font-family: 'Roboto', sans-serif;
+}
+.navbar {
+  margin-bottom: 20px;
 }
 main > .container {
   height: inherit; // gets the same height as main, don't need to set it in js separately
@@ -124,12 +150,50 @@ textarea {
 }
 .postContainer {
   margin-top:10px;
+  .well {
+    padding-bottom: 0;
+  }
+  img {
+    margin-right: 10px;
+  }
+  textarea {
+    margin-top:10px;
+  }
+  button {
+    margin-bottom: 10px;
+  }
+}
+.commentContainer {
+  //clear:both;
+  border: 1px solid #e3e3e3;
+  border-bottom: none;
+
+  li {
+    padding:10px;
+
+    p {
+      margin-bottom:0;
+    }
+    &:nth-child(odd){
+      background: #ffefef;
+    }
+    &:last-child {
+      border-bottom-left-radius: 3px;
+      border-bottom-right-radius: 3px;
+    }
+  }
 }
 .keabookUserList {
   overflow:auto;
-
-  .keabookUserList {
-
+  border-radius:3px;
+  border: 1px solid #e3e3e3;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+  -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+  padding:10px;
+  hr {
+    margin-top: 10px;
+    margin-bottom: 10px;
   }
   .userListItem {
     img {

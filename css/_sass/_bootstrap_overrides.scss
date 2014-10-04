@@ -43,7 +43,13 @@ a {
   color: $whitish;
   background-color: $red;
   border-color: #adadad;
+
 }
 .well {
-  background-color: lighten($lightBlue,60%);
+  background-color: lighten($whitish,60%);
+
+  > .row {
+    margin-left:-10px;
+    margin-right: -10px;
+  }
 }
