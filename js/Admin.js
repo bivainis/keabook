@@ -25,7 +25,7 @@ var Admin = (function(){
             }
 
             tableData += '<tr class="alert ' + rowClass + '">' +
-                '<td data-id="' + _userTable[i].id + '">' + _userTable[i].id + '</td>' +
+                '<td data-id="' + _userTable[i].id + '"><span class="btn-link" data-profileid="' + _userTable[i].id + '" >' + _userTable[i].id + '</td>' +
                 '<td data-img><img src="http://1.gravatar.com/avatar/' + _userTable[i].gravatar + '?size=30px" alt="" width="30px" height="30px"/></td>' +
                 '<td data-name>' + _userTable[i].name + '</td>' +
                 '<td data-surname>' + _userTable[i].surname + '</td>' +
